@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap');
+
+.spacer {
+    flex: 1 1 auto;
+}
+.topnav {
+    background-color: #AD1457;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+}
