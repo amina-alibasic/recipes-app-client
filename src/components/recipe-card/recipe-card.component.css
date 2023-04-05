@@ -1,10 +1,21 @@
 .example-card {
-    max-width: 400px;
-    max-height: 600px;
+    max-width: 600px;
+    /* max-height: 600px; */
+    color: black;
+    /* margin: 50px; */
+    width: fit-content;
+    /* width: 50%; */
   }
 
 
 .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+    background-size: small;
+  }
+  mat-card {
+    width: calc(100% - 70px);
+    height: calc(100% - 70px);
+  }
+  .mat-card-content{
+    word-wrap: break-word;
   }

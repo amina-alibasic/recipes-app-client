@@ -6,7 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./recipe-card.component.css']
 })
 export class RecipeCardComponent {
-  @Input() name: string = '';
-  @Input() ingredients: [] = [];
+  @Input() title: string = '';
+  @Input() category: string = '';
+  @Input() ingredients: string ='';
   @Input() photoSrc: string = '';
 }

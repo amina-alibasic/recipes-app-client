@@ -1,1 +1,21 @@
-<p>desserts works!</p>
+<!-- <mat-grid-list cols="4" rowHeight="600" gutterSize="50"> -->
+    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" *ngFor="let recipe of recipes">
+
+        <app-recipe-card [title]="recipe.title" [category]="recipe.category" [ingredients]="recipe.ingredients"></app-recipe-card>
+
+    </div>
+        <!-- <mat-grid-tile  *ngFor="let recipe of recipes">
+            <app-recipe-card [title]="recipe.title" [category]="recipe.category" [ingredients]="recipe.ingredients"></app-recipe-card>
+        </mat-grid-tile> -->
+<!-- </mat-grid-list> -->
+
+
+
+
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="25%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,5,6,7]">
+        <app-recipe-card/>
+      </div>
+    </div>
+  </div>

@@ -14,6 +14,9 @@ import { BreakfastComponent } from 'src/components/breakfast/breakfast.component
 import { MaincourseComponent } from 'src/components/maincourse/maincourse.component';
 import { DessertsComponent } from 'src/components/desserts/desserts.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
