@@ -1,9 +1,13 @@
-<nav mat-tab-nav-bar class="topnav">
-  <a mat-tab-link *ngFor="let item of navbarItems"
+<nav mat-tab-nav-bar class="topnav" dynamicHeight [tabPanel]="tabPanel">
+  <a mat-tab-link *ngFor="let item of navbarItems"  [routerLink]="item.link" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive"
     class="mat-link"
     (click)="activeLink = item.link"
     [routerLink]="item.link"
     [active]="activeLink == item.link"> {{ item.title }}
   </a>
 </nav>
+
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
   

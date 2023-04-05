@@ -8,53 +8,34 @@ import { Component } from '@angular/core';
 export class DessertsComponent {
   recipes = [
     {
-      title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
+      title: 'Title Title Title Title',
+      category: 'Category'
+    },
+    {
+      title: 'Title TitleTitle',
+      category: 'Category'
+    },
+    {
+      title: 'Title Title',
+      category: 'Category'
     },
     {
       title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
+      category: 'Category'
+   
     },
     {
       title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
+      category: 'Category'
     },
     {
       title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
+      category: 'Category'
+
     },
     {
       title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
-    },
-    {
-      title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
-    },
-    {
-      title: 'Title',
-      category: 'Category',
-      ingredients: 'List of ingredients List of ingredients' +
-       'List of ingredients List of ingredients List of ingredients List of ingredients List of ingredients' +
-       'List of ingredientsList of ingredients List of ingredients List of ingredients'
+      category: 'Category'
     }
   ]
 }

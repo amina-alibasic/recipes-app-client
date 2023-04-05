@@ -1,15 +1,9 @@
-<mat-card class="example-card"  fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)">
+<mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>{{ title }}</mat-card-title>
       <mat-card-subtitle>{{ category }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-       {{ ingredients }}
-      </p>
-    </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Open recipe</button>
+      <button mat-raised-button color="accent">Open recipe</button>
     </mat-card-actions>
 </mat-card>

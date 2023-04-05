@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class RecipeCardComponent {
   @Input() title: string = '';
   @Input() category: string = '';
-  @Input() ingredients: string ='';
+  // @Input() ingredients: string ='';
   @Input() photoSrc: string = '';
 }
