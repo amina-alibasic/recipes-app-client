@@ -1,21 +1,9 @@
-<!-- <p>
-    <mat-toolbar class="topnav">
-      <span class="spacer"></span>
-      <span>HOME</span>
-      <span class="spacer"></span>
-      <span>DESSERTS</span>
-      <span class="spacer"></span>
-      <span>BREAKFAST</span>
-      <span class="spacer"></span>
-      <span>MAIN COURSE MEALS</span>
-      <span class="spacer"></span>
-    </mat-toolbar>
-</p> -->
-
-
-<mat-tab-group animationDuration="1000ms" class="topnav"  (selectedTabChange)="clickOnTab($event)">
-    <mat-tab label="HOME"> </mat-tab>
-    <mat-tab label="DESSERTS"></mat-tab>
-    <mat-tab label="BREAKFASTS"></mat-tab>
-    <mat-tab label="MAIN COURSE MEALS"></mat-tab>
-  </mat-tab-group>
+<nav mat-tab-nav-bar class="topnav">
+  <a mat-tab-link *ngFor="let item of navbarItems"
+    class="mat-link"
+    (click)="activeLink = item.link"
+    [routerLink]="item.link"
+    [active]="activeLink == item.link"> {{ item.title }}
+  </a>
+</nav>
+  

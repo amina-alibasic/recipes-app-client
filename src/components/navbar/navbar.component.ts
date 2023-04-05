@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,28 +11,25 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor(
-    private router: Router  ) {}
+  constructor() {}
 
-
-  
-  clickOnTab(event: MatTabChangeEvent){
-    // indexing starts at 0 and increases sequentially in the order of tab titles
-      switch(event.index){
-        case 0:
-         this.router.navigate(['/home']);
-          break;
-        case 1:
-         this.router.navigate(['/desserts']);
-          break;
-        case 2:
-         this.router.navigate(['/breakfasts']);
-          break;
-        case 3:
-         this.router.navigate(['/main-course-meals']);
-          break;
-        default:
-         this.router.navigate(['/home']);
-      }
-  }
+  navbarItems = [
+    {
+      link: 'home',
+      title: 'HOME'
+    },
+    {
+      link: 'desserts',
+      title: 'DESSERTS'
+    },
+    {
+      link: 'breakfasts',
+      title: 'BREAKFASTS'
+    },
+    {
+      link: 'main-course-meals',
+      title: 'MAIN COURSE MEALS'
+    }
+  ];
+  activeLink = this.navbarItems[0].link;
 }
