@@ -8,7 +8,7 @@ import { MaincourseComponent } from 'src/components/maincourse/maincourse.compon
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'breakfasts', component: BreakfastComponent },
+  { path: 'breakfast', component: BreakfastComponent },
   { path: 'desserts', component: DessertsComponent },
   { path: 'main-course-meals', component: MaincourseComponent },
 

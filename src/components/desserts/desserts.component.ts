@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { buttonsToShow } from '../home/home.component';
 
 @Component({
   selector: 'app-desserts',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./desserts.component.css']
 })
 export class DessertsComponent {
+  
+  constructor(private router: Router) { }
+
   recipes = [
     {
       title: 'Title Title Title Title',
@@ -37,5 +42,9 @@ export class DessertsComponent {
       title: 'Title',
       category: 'Category'
     }
-  ]
+  ];
+
+  buttonsToShow(){
+    return buttonsToShow.filter(e => e.link !== this.router.url);
+  }
 }

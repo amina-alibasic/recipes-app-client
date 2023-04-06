@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatTabsModule} from '@angular/material/tabs';
 import { HomeComponent } from 'src/components/home/home.component';
-import { NavbarComponent } from 'src/components/navbar/navbar.component';
 import {MatCardModule} from '@angular/material/card';
 import { RecipeCardComponent } from 'src/components/recipe-card/recipe-card.component';
 import { BreakfastComponent } from 'src/components/breakfast/breakfast.component';
@@ -15,13 +14,16 @@ import { MaincourseComponent } from 'src/components/maincourse/maincourse.compon
 import { DessertsComponent } from 'src/components/desserts/desserts.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { FooterComponent } from 'src/components/footer/footer.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent,NavbarComponent, RecipeCardComponent, BreakfastComponent,MaincourseComponent, DessertsComponent
+    AppComponent,HomeComponent, RecipeCardComponent, BreakfastComponent,MaincourseComponent, DessertsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

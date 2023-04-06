@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Shadows+Into+Light&display=swap');
+
+.homepage h1 {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 120px;
+}
+
+.homepage {
+    margin: 50px;
+} 
+
+button {
+    font-size: 40px;
+    margin: 0 12px;
+    padding: 30px;
+}
