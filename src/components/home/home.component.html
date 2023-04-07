@@ -1,23 +1,12 @@
-<mat-grid-list cols="1" rowHeight="300">
-    <mat-grid-tile>
+<mat-grid-list cols="1" rowHeight="200">
+    <mat-grid-tile rowspan="2">
         <div class="homepage">
             <h1> What's cooking? </h1> 
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
         <div class="buttons-container">
-            <button mat-stroked-button color="accent" *ngFor="let category of categories"  (click)="goTo(category.link)">{{ category.title }}</button>
+            <button mat-raised-button color="accent" *ngFor="let category of categories"  (click)="goTo(category.link)">{{ category.title }}</button>
         </div> 
     </mat-grid-tile>
 </mat-grid-list>
-
-
-
-<!-- 
-<div class="container"
->
-<div class="homepage">
-    <h1> What's cooking? </h1> 
-    <button mat-raised-button color="accent" *ngFor="let category of categories"  (click)="goTo(category.link)">{{ category.title }}</button>
-</div>
-</div> -->

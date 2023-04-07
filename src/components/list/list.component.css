@@ -5,27 +5,36 @@
 
 .subtitle {
     font-size: 24px;
-    margin: 20px;
+    margin: 20px 0;
+    font-weight: 500;
 }
 
 .mat-expansion-panel-header-title {
     font-size: 28px;
 }
 
-::ng-deep .mat-expansion-panel {
+.mat-expansion-panel {
     background-color: #f2bcf8;
 }
 
 .icon {
-    margin: 0 8px 0 0;
+    margin: 0 6px 0 0;
 }
 
-.ingredients {
+/* these icons have some offset, so they need additional margin */
+.subtitle-icon {
+    margin: 0 6px -3px 0;
+
+}
+
+.content {
     font-size: 16px;
+    text-align: start;
 }
 
-.left-align-forced {
-    width: 100%;
+.left-align {
+    position: absolute;
+    left: 0;
 }
 
 .expansion-panels {

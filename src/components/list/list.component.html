@@ -9,29 +9,29 @@
 
       <mat-grid-list cols="3" rowHeight="30">
         <mat-grid-tile colspan="1">
-            <span class="left-align-forced">
-                <mat-icon class="icon">shopping_cart</mat-icon> <span class="subtitle">Ingredients: </span>
+            <span class="left-align">
+                <mat-icon class="subtitle-icon">shopping_cart_checkout</mat-icon> <span class="subtitle">Ingredients:</span>
             </span>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-            <span class="left-align-forced">
-            <mat-icon class="icon">shopping_cart</mat-icon> <span class="subtitle">Preparation: </span>
+            <span class="left-align">
+              <mat-icon class="subtitle-icon">pan_tool</mat-icon> <span class="subtitle">Preparation:</span>
             </span>
         </mat-grid-tile>
       </mat-grid-list>
 
       <mat-grid-list cols="3" rowHeight="200">
         <mat-grid-tile colspan="1" [rowspan]="ingredientsSize(recipe)">
-                <mat-list  class="left-align-forced" role="list">
-                    <mat-list-item role="listitem" class="ingredients"  
+                <mat-list class="left-align" role="list">
+                    <mat-list-item role="listitem" class="content"  
                         *ngFor="let ingredient of recipe.ingredients">
                              - {{ ingredient }}
                     </mat-list-item>
                   </mat-list>
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
-            <span class="left-align-forced">
-            <p class="ingredients"> {{ recipe.preparation }}</p>
+            <span class="left-align">
+            <p class="content"> {{ recipe.preparation }}</p>
             </span>
             
         </mat-grid-tile>
