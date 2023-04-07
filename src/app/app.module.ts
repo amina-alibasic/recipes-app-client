@@ -8,7 +8,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HomeComponent } from 'src/components/home/home.component';
 import {MatCardModule} from '@angular/material/card';
-import { RecipeCardComponent } from 'src/components/recipe-card/recipe-card.component';
 import { BreakfastComponent } from 'src/components/breakfast/breakfast.component';
 import { MaincourseComponent } from 'src/components/maincourse/maincourse.component';
 import { DessertsComponent } from 'src/components/desserts/desserts.component';
@@ -28,7 +27,7 @@ import { HeaderComponent } from 'src/components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent,HomeComponent, RecipeCardComponent, BreakfastComponent,MaincourseComponent, DessertsComponent,
+    AppComponent,HomeComponent, BreakfastComponent,MaincourseComponent, DessertsComponent,
     FooterComponent, ListComponent, HeaderComponent
   ],
   imports: [
