@@ -1,0 +1,35 @@
+.recipe-tile {
+    margin: 20px;
+    padding: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    margin: 20px;
+}
+
+.mat-expansion-panel-header-title {
+    font-size: 28px;
+}
+
+::ng-deep .mat-expansion-panel {
+    background-color: #f2bcf8;
+}
+
+.icon {
+    margin: 0 8px 0 0;
+}
+
+.ingredients {
+    font-size: 16px;
+}
+
+.left-align-forced {
+    width: 100%;
+}
+
+.expansion-panels {
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}

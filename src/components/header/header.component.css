@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Shadows+Into+Light&display=swap');
+
+.title h1 {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 72px;
+}
+
+.header {
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 30px 0;
+    margin-bottom: 20px;
+    z-index: 15;
+}
+
+.mat-divider {
+    border-top-color: #fff;
+    margin-top: 20px;
+}

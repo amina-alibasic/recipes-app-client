@@ -16,6 +16,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FooterComponent } from 'src/components/footer/footer.component';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { ListComponent } from 'src/components/list/list.component';
+import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import { HeaderComponent } from 'src/components/header/header.component';
 
 
 
@@ -23,7 +29,7 @@ import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AppComponent,HomeComponent, RecipeCardComponent, BreakfastComponent,MaincourseComponent, DessertsComponent,
-    FooterComponent
+    FooterComponent, ListComponent, HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,11 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule,
+    CdkAccordionModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

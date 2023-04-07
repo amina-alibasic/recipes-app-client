@@ -1,8 +1,4 @@
-<mat-grid-list cols="5" rowHeight="200" gutterSize="60">
-        <mat-grid-tile *ngFor="let recipe of recipes">
-            <app-recipe-card [title]="recipe.title" [category]="recipe.category"></app-recipe-card>
-        </mat-grid-tile> 
- </mat-grid-list>
-
+<app-header></app-header>
+<app-list [recipesToShow]="recipes"></app-list>
 <app-footer [buttonsToShow]="buttonsToShow()"></app-footer>
 
