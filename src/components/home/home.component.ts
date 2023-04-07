@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonClass } from '../footer/footer.component';
+import * as jsonData from '../../assets/recipes.json';
 
 @Component({
   selector: 'app-home',
@@ -25,12 +26,13 @@ export class HomeComponent {
     }
   ];
 
-  
 
   goTo(link: String) {
     this.router.navigate([link]);
   }
 }
+
+export const recipes: any = jsonData;
 
 export const buttonsToShow: ButtonClass[] = [
   {
