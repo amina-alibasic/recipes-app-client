@@ -3,7 +3,7 @@
     <mat-expansion-panel *ngFor="let recipe of recipesToShow" class="recipe-tile">
       <mat-expansion-panel-header>
         <mat-panel-title>
-            <mat-icon class="icon">favorite_border</mat-icon> <span class="title"> {{ recipe.title }} </span>
+            <mat-icon class="icon">favorite_border</mat-icon> <span class="title"> {{ recipe.name }} </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
@@ -31,7 +31,7 @@
         </mat-grid-tile>
         <mat-grid-tile colspan="2">
             <span class="left-align">
-            <p class="content"> {{ recipe.preparation }}</p>
+            <p class="content"> {{ recipe.method }}</p>
             </span>
             
         </mat-grid-tile>

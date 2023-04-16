@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { buttonsToShow } from '../home/home.component';
 import * as jsonData from '../../assets/recipes.json';
+import { Recipe } from 'src/classes/recipe';
 
 
 @Component({
@@ -13,10 +14,11 @@ export class DessertsComponent {
   
   constructor(private router: Router) { }
 
-  recipes2: any = jsonData;
-  recipes = this.recipes2.recipes;
+  recipesx= jsonData;
+  recipes: Recipe[] = this.recipesx.recipes;
   ngOnInit() {
-    console.log(this.recipes.recipes);
+
+
   }
 
   buttonsToShow(){

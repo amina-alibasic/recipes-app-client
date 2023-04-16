@@ -10,7 +10,7 @@ import { buttonsToShow } from '../home/home.component';
 })
 export class BreakfastComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { } 
 
   buttonsToShow(){
     return buttonsToShow.filter(e => e.link !== this.router.url);
