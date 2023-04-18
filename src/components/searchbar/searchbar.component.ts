@@ -8,7 +8,7 @@ import {map, startWith} from 'rxjs/operators';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css']
 })
-export class Searchbar implements OnInit {
+export class SearchbarComponent  implements OnInit {
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
