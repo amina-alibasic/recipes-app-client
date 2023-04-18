@@ -11,7 +11,7 @@ export class RecipesListComponent {
 
   @Input() recipesToShow: Recipe[] = [];
 
-  ingredientsSize(recipe: Recipe): number {
-    return recipe.ingredients.length/4;
+  ingredientsSize(size: number): number {
+    return size/4;
   }
 }

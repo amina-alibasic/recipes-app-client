@@ -1,42 +1,44 @@
 <div class="expansion-panels">
-<mat-accordion multi >    
+  <mat-accordion multi>
     <mat-expansion-panel *ngFor="let recipe of recipesToShow" class="recipe-tile">
       <mat-expansion-panel-header>
         <mat-panel-title>
-            <mat-icon class="icon">favorite_border</mat-icon> <span class="title"> {{ recipe.name }} </span>
+          <mat-icon class="icon">favorite_border</mat-icon> <span class="title"> {{ recipe.name }} </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <mat-grid-list cols="3" rowHeight="30">
         <mat-grid-tile colspan="1">
-            <span class="left-align">
-                <mat-icon class="subtitle-icon">shopping_cart_checkout</mat-icon> <span class="subtitle">Ingredients:</span>
-            </span>
+          <span class="left-align">
+            <mat-icon class="subtitle-icon">shopping_cart_checkout</mat-icon> <span class="subtitle">Ingredients:</span>
+          </span>
         </mat-grid-tile>
-        <mat-grid-tile colspan="2">
-            <span class="left-align">
-              <mat-icon class="subtitle-icon">pan_tool</mat-icon> <span class="subtitle">Preparation:</span>
-            </span>
-        </mat-grid-tile>
+        <!-- <mat-grid-tile colspan="2">
+          <span class="left-align">
+            <mat-icon class="subtitle-icon">pan_tool</mat-icon> <span class="subtitle">Preparation:</span>
+          </span>
+        </mat-grid-tile> -->
       </mat-grid-list>
 
-      <mat-grid-list cols="3" rowHeight="200">
-        <mat-grid-tile colspan="1" [rowspan]="ingredientsSize(recipe)">
-                <mat-list class="left-align" role="list">
-                    <mat-list-item role="listitem" class="content"  
-                        *ngFor="let ingredient of recipe.ingredients">
-                             - {{ ingredient }}
-                    </mat-list-item>
-                  </mat-list>
-        </mat-grid-tile>
+      <mat-grid-list cols="2">
         <mat-grid-tile colspan="2">
-            <span class="left-align">
-            <p class="content"> {{ recipe.method }}</p>
-            </span>
-            
+          <mat-list class="left-align" role="list">
+            <mat-list-item role="listitem" class="content" *ngFor="let ingredient of recipe.ingredients; let i = index">
+              <span *ngIf="i < 5">
+                - {{ ingredient }}
+              </span>
+            </mat-list-item>
+          </mat-list>
         </mat-grid-tile>
+        <!-- <mat-grid-tile colspan="2" rowspan="2">
+          <span class="left-align">
+            <p class="content" *ngFor="let methodPart of recipe.method;  let i = index"> {{ i + 1}}. {{ methodPart }}
+            </p>
+          </span>
+
+        </mat-grid-tile> -->
       </mat-grid-list>
 
     </mat-expansion-panel>
-</mat-accordion>
+  </mat-accordion>
 </div>
