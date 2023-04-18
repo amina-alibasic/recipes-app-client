@@ -23,12 +23,15 @@ import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from 'src/components/header/header.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { SearchbarComponent } from 'src/components/searchbar/searchbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent, HomeComponent, BreakfastComponent, MaincourseComponent, DessertsComponent,
-    FooterComponent, RecipesListComponent, HeaderComponent
+    FooterComponent, RecipesListComponent, HeaderComponent, SearchbarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatListModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
