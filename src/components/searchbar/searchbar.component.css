@@ -1,0 +1,12 @@
+.searchbar {
+    width: 80%;
+}
+
+.overlay {
+    text-align: center;
+    margin: auto;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: #69f0ae !important;
+}
