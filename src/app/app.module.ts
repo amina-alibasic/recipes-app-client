@@ -9,7 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HomeComponent } from 'src/components/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { BreakfastComponent } from 'src/components/breakfast/breakfast.component';
-import { MaincourseComponent } from 'src/components/maincourse/maincourse.component';
+import { MainCourseComponent } from 'src/components/main-course/main-course.component';
 import { DessertsComponent } from 'src/components/desserts/desserts.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -30,7 +30,7 @@ import { SearchbarComponent } from 'src/components/searchbar/searchbar.component
 
 @NgModule({
   declarations: [
-    AppComponent, HomeComponent, BreakfastComponent, MaincourseComponent, DessertsComponent,
+    AppComponent, HomeComponent, BreakfastComponent, MainCourseComponent, DessertsComponent,
     FooterComponent, RecipesListComponent, HeaderComponent, SearchbarComponent
   ],
   imports: [

@@ -4,10 +4,10 @@ import { buttonsToShow } from '../home/home.component';
 
 @Component({
   selector: 'app-maincourse',
-  templateUrl: './maincourse.component.html',
-  styleUrls: ['./maincourse.component.css']
+  templateUrl: './main-course.component.html',
+  styleUrls: ['./main-course.component.css']
 })
-export class MaincourseComponent {
+export class MainCourseComponent {
 
   constructor(private router: Router) { }
 
