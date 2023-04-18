@@ -1,10 +1,28 @@
-.recipe-tile {
-    margin: 20px;
-    padding: 10px;
+.recipe-panel {
+    padding: 20px;
+    background-color: #f2bcf8;
+    width: 100%;
+    margin: 0 10px;
+}
+
+.mat-grid-tile-content {
+    display: block !important;
+}
+
+.panels {
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+button {
+    right: 20px;
+    position: absolute;
 }
 
 .title {
     font-size: 22px;
+    color: #000;
 }
 
 .subtitle {
@@ -13,13 +31,6 @@
     font-weight: 500;
 }
 
-.mat-expansion-panel-header-title {
-    font-size: 28px;
-}
-
-.mat-expansion-panel {
-    background-color: #f2bcf8;
-}
 
 .icon {
     margin: 0 6px 0 0;
@@ -34,15 +45,10 @@
 .content {
     font-size: 16px;
     text-align: start;
+    padding: 0;
 }
 
 .left-align {
     position: absolute;
     left: 0;
-}
-
-.expansion-panels {
-    text-align: center;
-    margin: auto;
-    width: 80%;
 }

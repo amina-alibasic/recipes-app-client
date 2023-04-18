@@ -36,7 +36,7 @@ export const recipes: any = jsonData;
 
 export const buttonsToShow: ButtonClass[] = [
   {
-    title: 'HOME',
+    title: 'GO BACK TO HOME',
     link: '/home'
   },
   { title: 'BREAKFAST',

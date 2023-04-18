@@ -5,7 +5,7 @@
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
-        <div class="buttons-container">
+        <div>
             <button mat-raised-button color="accent" *ngFor="let category of categories"
                 (click)="goTo(category.link)">{{ category.title }}</button>
         </div>

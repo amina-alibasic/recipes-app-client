@@ -1,4 +1,4 @@
-<div class="expansion-panels">
+<!-- <div class="expansion-panels">
   <mat-accordion multi>
     <mat-expansion-panel *ngFor="let recipe of recipesToShow" class="recipe-tile">
       <mat-expansion-panel-header>
@@ -29,4 +29,22 @@
 
     </mat-expansion-panel>
   </mat-accordion>
+</div> -->
+
+
+<div class="panels">
+  <mat-grid-list cols="2" rowHeight="100">
+    <mat-grid-tile *ngFor="let recipe of recipesToShow">
+      <mat-card class="recipe-panel">
+        <mat-card-header class="content">
+          <mat-card-title class="title">{{recipe.name}}</mat-card-title>
+          <div>
+            <button mat-raised-button color="accent" class="button"> OPEN RECIPE <mat-icon
+                class="icon">open_in_new</mat-icon> </button>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
 </div>
