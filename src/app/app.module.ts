@@ -27,6 +27,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { RecipesEffects } from './store/effects/recipes.effects';
+import { RECIPES_FEATURE_KEY } from './store/state/recipes.state';
+import { reducer } from './store/reducers/recipes.reducers';
 
 
 
@@ -52,8 +57,10 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
-
+    FormsModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(RECIPES_FEATURE_KEY, reducer),
+    EffectsModule.forRoot([RecipesEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
