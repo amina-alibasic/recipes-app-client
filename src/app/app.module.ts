@@ -25,13 +25,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SearchbarComponent } from 'src/components/searchbar/searchbar.component';
+import { SearchPipe } from 'src/assets/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     AppComponent, HomeComponent, BreakfastComponent, MainCourseComponent, DessertsComponent,
-    FooterComponent, RecipesListComponent, HeaderComponent, SearchbarComponent
+    FooterComponent, RecipesListComponent, HeaderComponent, SearchbarComponent, SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { SearchbarComponent } from 'src/components/searchbar/searchbar.component
     MatListModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
 
   ],
   providers: [],

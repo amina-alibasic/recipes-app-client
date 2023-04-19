@@ -16,7 +16,9 @@ export class SearchbarComponent  implements OnInit {
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
-searchbarPlaceholder: string = '';
+  searchbarPlaceholder: string = '';
+  public searchText: Event = new Event('');
+  
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
