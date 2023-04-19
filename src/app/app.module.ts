@@ -1,32 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs';
-import { HomeComponent } from 'src/components/home/home.component';
-import { MatCardModule } from '@angular/material/card';
-import { BreakfastComponent } from 'src/components/breakfast/breakfast.component';
-import { MainCourseComponent } from 'src/components/main-course/main-course.component';
-import { DessertsComponent } from 'src/components/desserts/desserts.component';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { FooterComponent } from 'src/components/footer/footer.component';
+import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { RecipesListComponent } from 'src/components/recipes-list/recipes-list.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from 'src/components/header/header.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { SearchbarComponent } from 'src/components/searchbar/searchbar.component';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchPipe } from 'src/assets/search.pipe';
-import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
+import { BreakfastComponent } from './components/breakfast/breakfast.component';
+import { MainCourseComponent } from './components/main-course/main-course.component';
+import { DessertsComponent } from './components/desserts/desserts.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 
 

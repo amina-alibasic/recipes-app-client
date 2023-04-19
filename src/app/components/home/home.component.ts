@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonClass } from '../footer/footer.component';
-import * as jsonData from '../../assets/recipes.json';
+import * as jsonData from '../../../assets/recipes.json';
 
 @Component({
   selector: 'app-home',

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BreakfastComponent } from 'src/components/breakfast/breakfast.component';
-import { DessertsComponent } from 'src/components/desserts/desserts.component';
-import { HomeComponent } from 'src/components/home/home.component';
-import { MainCourseComponent } from 'src/components/main-course/main-course.component';
+import { BreakfastComponent } from './components/breakfast/breakfast.component';
+import { DessertsComponent } from './components/desserts/desserts.component';
+import { HomeComponent } from './components/home/home.component';
+import { MainCourseComponent } from './components/main-course/main-course.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

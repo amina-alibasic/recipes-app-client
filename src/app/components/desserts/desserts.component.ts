@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { buttonsToShow } from '../home/home.component';
-import * as jsonData from '../../assets/recipes.json';
-import { Recipe } from 'src/classes/recipe';
+import * as jsonData from '../../../assets/recipes.json';
+import { Recipe } from 'src/app/classes/recipe';
 
 
 @Component({
