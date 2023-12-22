@@ -29,6 +29,7 @@ import { reducer } from "./store/reducers/recipes.reducers";
 import { HttpClientModule } from "@angular/common/http";
 import { AddRecipeComponent } from "./components/add-recipe/add-recipe.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatGridListModule,
     MatDividerModule,
