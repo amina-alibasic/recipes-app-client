@@ -2,7 +2,7 @@
   <form>
     <mat-form-field class="searchbar">
       <!-- <mat-label>Search</mat-label> -->
-      <input matInput [placeholder]=searchbarPlaceholder [(ngModel)]="searchText">
+      <input matInput [placeholder]=searchbarPlaceholder [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 </div>

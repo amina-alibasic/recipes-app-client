@@ -1,37 +1,3 @@
-<!-- <div class="expansion-panels">
-  <mat-accordion multi>
-    <mat-expansion-panel *ngFor="let recipe of recipesToShow" class="recipe-tile">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon class="icon">favorite_border</mat-icon> <span class="title"> {{ recipe.name }} </span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <mat-grid-list cols="3" rowHeight="30">
-        <mat-grid-tile colspan="1">
-          <span class="left-align">
-            <mat-icon class="subtitle-icon">shopping_cart_checkout</mat-icon> <span class="subtitle">Ingredients:</span>
-          </span>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-      <mat-grid-list cols="3">
-        <mat-grid-tile colspan="2">
-          <mat-list class="left-align" role="list">
-            <mat-list-item role="listitem" class="content" *ngFor="let ingredient of recipe.ingredients; let i = index">
-              <span *ngIf="i < 5">
-                - {{ ingredient }}
-              </span>
-            </mat-list-item>
-          </mat-list>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-    </mat-expansion-panel>
-  </mat-accordion>
-</div> -->
-
-
 <div class="panels">
   <mat-grid-list cols="2" rowHeight="100">
     <mat-grid-tile *ngFor="let recipe of recipesToShow">

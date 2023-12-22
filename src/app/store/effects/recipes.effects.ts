@@ -1,37 +1,26 @@
-import { RecipeActionsNames } from '../actions/recipes.actions';
-import * as recipesActions from '../actions/recipes.actions';
-import * as jsonData from '../../../assets/recipes.json';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Recipe } from 'src/app/classes/recipe';
-import { Observable, catchError, map, of, switchMap } from 'rxjs';
-import { Injectable } from '@angular/core';
-
+import { Injectable } from "@angular/core";
+import { Actions, ofType, createEffect } from "@ngrx/effects";
+import { of } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
+import { RecipeService } from "../../services/recipe.service"; // Create a service to fetch recipes
+import * as RecipeActions from "../actions/recipes.actions";
 
 @Injectable()
-export class RecipesEffects {
+export class RecipeEffects {
+  loadRecipes$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipeActions.loadRecipes),
+      switchMap(() =>
+        this.recipeService.getRecipes().pipe(
+          map((recipes) => RecipeActions.loadRecipesSuccess({ recipes })),
+          catchError((error) => of(RecipeActions.loadRecipesFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(
-    private readonly actions$: Actions,
+    private actions$: Actions,
+    private recipeService: RecipeService
   ) {}
-  public readonly loadRecipes$: Observable<any> = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(RecipeActionsNames.LoadRecipes),
-      switchMap(() => of(jsonData)),
-      map((data: Recipe[]) => recipesActions.LoadRecipesSuccess({ data })),
-      catchError((error: string | null) =>
-        of(recipesActions.LoadRecipesFailure({ error }))
-      )
-    );
-  });
-  public readonly addRecipe$: Observable<any> = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(RecipeActionsNames.AddRecipe),
-      map((data: any) => {
-        const recipes: Recipe = data.data;
-        return recipesActions.AddRecipeSuccess({ data: recipes });
-      }),
-      catchError((error: string | null) =>
-        of(recipesActions.AddRecipeFailure({ error }))
-      )
-    );
-  });
 }

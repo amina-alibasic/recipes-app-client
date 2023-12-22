@@ -1,40 +1,38 @@
-import { RecipesState, initialRecipesState } from '../state/recipes.state';
-import * as recipesActions from '../actions/recipes.actions';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from "@ngrx/store";
+import { Recipe } from "../../classes/recipe"; // Define the Recipe model
+import * as RecipeActions from "../actions/recipes.actions";
 
-const recipessReducer = createReducer(
-  initialRecipesState,
-  on(recipesActions.Init, (state: any) => ({ ...state, loaded: false, error: null })),
-  on(recipesActions.LoadRecipes, (state: any) => ({
+export interface RecipesState {
+  recipes: Recipe[];
+  loading: boolean;
+  error: any;
+}
+
+export const initialState: RecipesState = {
+  recipes: [],
+  loading: false,
+  error: null,
+};
+
+const recipesReducer = createReducer(
+  initialState,
+  on(RecipeActions.loadRecipes, (state) => ({
     ...state,
-    loaded: false,
+    loading: true,
     error: null,
   })),
-  on(recipesActions.LoadRecipesSuccess, (state: any, { data }: any) => ({
+  on(RecipeActions.loadRecipesSuccess, (state, { recipes }) => ({
     ...state,
-    recipess: data,
-    loaded: true,
-    error: null,
+    recipes,
+    loading: false,
   })),
-  on(recipesActions.LoadRecipesFailure, (state: any, { error }: any) => ({ ...state, error })),
-  on(recipesActions.AddRecipe, (state: any) => ({
+  on(RecipeActions.loadRecipesFailure, (state, { error }) => ({
     ...state,
-    loaded: false,
-    error: null,
-  })),
-  on(recipesActions.AddRecipeSuccess, (state: { recipes: any; }, { data }: any) => {
-    let recipess = [...state.recipes];
-    recipess.push(data);
-    return {
-      ...state,
-      recipess: recipess,
-      loaded: true,
-      error: null,
-    };
-  }),
-  on(recipesActions.LoadRecipesFailure, (state: any, { error }: any) => ({ ...state, error }))
+    error,
+    loading: false,
+  }))
 );
 
 export function reducer(state: RecipesState | undefined, action: Action) {
-  return recipessReducer(state, action);
+  return recipesReducer(state, action);
 }

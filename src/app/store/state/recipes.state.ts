@@ -1,14 +1,7 @@
 import { Recipe } from "src/app/classes/recipe";
 
-export const RECIPES_FEATURE_KEY = 'recipes';
-export interface RecipesState {
+export interface AppState {
   recipes: Recipe[];
-  loaded: boolean;
-  error?: string | null;
+  recipesLoaded: boolean;
+  recipesError: any;
 }
-
-export const initialRecipesState: RecipesState = {
-  recipes: [],
-  loaded: false,
-  error: null,
-};

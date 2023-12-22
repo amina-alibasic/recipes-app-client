@@ -1,40 +1,40 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { buttonsToShow } from '../home/home.component';
-import * as jsonData from '../../../assets/recipes.json';
-import { Recipe } from 'src/app/classes/recipe';
-import { Store, select } from '@ngrx/store';
-import { RecipesState } from 'src/app/store/state/recipes.state';
-import * as recipesActions from 'src/app/store/actions/recipes.actions';
-import * as recipesSelectors from 'src/app/store/selectors/recipes.selector';
-
-import { Observable } from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { buttonsToShow } from "../home/home.component";
+import { Recipe } from "src/app/classes/recipe";
+import { Store, select } from "@ngrx/store";
+import { AppState } from "src/app/store/state/recipes.state";
+import {
+  selectRecipes,
+  selectRecipesLoading,
+  selectRecipesError,
+} from "../../store/selectors/recipes.selector";
+import * as RecipeActions from "../../store/actions/recipes.actions";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-desserts',
-  templateUrl: './desserts.component.html',
-  styleUrls: ['./desserts.component.css']
+  selector: "app-desserts",
+  templateUrl: "./desserts.component.html",
+  styleUrls: ["./desserts.component.css"],
 })
-export class DessertsComponent {
-  
-  constructor(private router: Router, private readonly store: Store<RecipesState>) { }
+export class DessertsComponent implements OnInit {
+  recipes!: Recipe[];
+  recipesLoading$!: Observable<boolean>;
+  recipesError$!: Observable<any>;
 
-  public readonly loaded$: Observable<boolean> = this.store.pipe(
-    select(recipesSelectors.getRecipesLoaded)
-  );
-  public readonly recipes$: Observable<Recipe[]> = this.store.pipe(
-    select(recipesSelectors.getAllRecipes)
-  );
+  constructor(private store: Store<AppState>, private router: Router) {}
 
-  recipesx= jsonData;
-  recipes: Recipe[] = this.recipesx;
-  ngOnInit() {
-    this.store.dispatch(recipesActions.Init());
-    this.store.dispatch(recipesActions.LoadRecipes());
-    console.log(this.recipes$);
+  ngOnInit(): void {
+    this.recipesLoading$ = this.store.pipe(select(selectRecipesLoading));
+    this.recipesError$ = this.store.pipe(select(selectRecipesError));
+    this.store.dispatch(RecipeActions.loadRecipes());
+
+    this.store.pipe(select(selectRecipes)).subscribe((recipes: Recipe[]) => {
+      this.recipes = recipes;
+    });
   }
 
-  buttonsToShow(){
-    return buttonsToShow.filter(e => e.link !== this.router.url);
+  buttonsToShow() {
+    return buttonsToShow.filter((e) => e.link !== this.router.url);
   }
 }
