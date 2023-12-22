@@ -1,9 +1,15 @@
-<app-header />
 <div class="overlay">
-    <form>
+    <button mat-raised-button color="accent" class="add-recipe-button" (click)="goTo('/add-recipe')">Add Recipe</button>
+    <form [formGroup]="checkboxes">
         <mat-form-field class="searchbar">
-            <input matInput type="text" (keyup)="onKey($event)" placeholder="Search...">
+            <input matInput type="text" (keyup)="search($event)" placeholder="Search...">
         </mat-form-field>
+        <div class="checkboxes">
+            <span><mat-checkbox formControlName="breakfasts">Breakfasts</mat-checkbox></span>
+            <span><mat-checkbox formControlName="mainCourseMeals">Main Course Meals</mat-checkbox></span>
+            <span><mat-checkbox formControlName="desserts">Desserts</mat-checkbox></span>
+        </div>
+        <!-- <div>{{ checkboxes.value | json }}</div> -->
     </form>
 </div>
-<app-recipes-list [recipesToShow]="recipes"></app-recipes-list>
+<app-recipes-list [recipesToShow]="filteredRecipes"></app-recipes-list>

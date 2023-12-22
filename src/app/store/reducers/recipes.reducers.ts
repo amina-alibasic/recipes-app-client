@@ -35,13 +35,6 @@ const recipesReducer = createReducer(
   }))
 );
 
-export const filteredRecipesReducer = createReducer(
-  initialState,
-  on(RecipeActions.setFilteredRecipes, (state, { recipes }) => ({
-    ...state,
-    filteredRecipes: recipes,
-  }))
-);
 export function reducer(state: RecipesState | undefined, action: Action) {
   return recipesReducer(state, action);
 }

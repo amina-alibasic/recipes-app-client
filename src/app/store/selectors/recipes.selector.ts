@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { RecipesState } from "../reducers/recipes.reducers";
-import { Recipe } from "src/app/classes/recipe";
 
 export const selectRecipesState =
   createFeatureSelector<RecipesState>("recipes");
@@ -20,13 +19,3 @@ export const selectRecipesError = createSelector(
   selectRecipesState,
   (state) => state.error
 );
-export const selectFilteredRecipesByName = (searchText: string) =>
-  createSelector(selectRecipes, (recipes: Recipe[]) => {
-    const searchLowerCase = searchText.toLowerCase();
-    if (!searchText || searchLowerCase.length < 3) {
-      return recipes; // If search text is empty or less than 3 characters, return all recipes
-    }
-    return recipes.filter((recipe) =>
-      recipe.name.toLowerCase().includes(searchLowerCase)
-    );
-  });

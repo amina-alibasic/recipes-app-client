@@ -10,7 +10,3 @@ export const loadRecipesFailure = createAction(
   "[Recipes] Load Recipes Failure",
   props<{ error: any }>()
 );
-export const setFilteredRecipes = createAction(
-  "[Filtered Recipes] Set Filtered Recipes",
-  props<{ recipes: Recipe[] }>()
-);

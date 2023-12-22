@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { CdkAccordionModule } from "@angular/cdk/accordion";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -27,6 +27,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { RecipeEffects } from "./store/effects/recipes.effects";
 import { reducer } from "./store/reducers/recipes.reducers";
 import { HttpClientModule } from "@angular/common/http";
+import { AddRecipeComponent } from "./components/add-recipe/add-recipe.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { HttpClientModule } from "@angular/common/http";
     RecipesListComponent,
     HeaderComponent,
     SearchPipe,
+    AddRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,8 @@ import { HttpClientModule } from "@angular/common/http";
     MatTabsModule,
     MatCardModule,
     MatButtonModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
     MatGridListModule,
     MatDividerModule,
     MatExpansionModule,

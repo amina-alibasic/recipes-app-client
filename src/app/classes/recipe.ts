@@ -1,7 +1,6 @@
 export class Recipe {
-    name!: string;
-    url!: string;
-    author!: string | null;
-    ingredients!: string[];
-    method!: string[];
+  name!: string;
+  category!: string;
+  ingredients!: string[];
+  method!: string[];
 }
