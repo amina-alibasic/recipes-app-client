@@ -20,13 +20,8 @@ import { SearchPipe } from "src/assets/search.pipe";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
-import { BreakfastComponent } from "./components/breakfast/breakfast.component";
-import { MainCourseComponent } from "./components/main-course/main-course.component";
-import { DessertsComponent } from "./components/desserts/desserts.component";
-import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { RecipesListComponent } from "./components/recipes-list/recipes-list.component";
-import { SearchbarComponent } from "./components/searchbar/searchbar.component";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { RecipeEffects } from "./store/effects/recipes.effects";
@@ -37,13 +32,8 @@ import { HttpClientModule } from "@angular/common/http";
   declarations: [
     AppComponent,
     HomeComponent,
-    BreakfastComponent,
-    MainCourseComponent,
-    DessertsComponent,
-    FooterComponent,
     RecipesListComponent,
     HeaderComponent,
-    SearchbarComponent,
     SearchPipe,
   ],
   imports: [

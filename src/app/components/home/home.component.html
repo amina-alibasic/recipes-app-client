@@ -1,13 +1,9 @@
-<mat-grid-list cols="1" rowHeight="200">
-    <mat-grid-tile rowspan="2">
-        <div class="homepage">
-            <h1> What's cooking? </h1>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <div>
-            <button mat-raised-button color="accent" *ngFor="let category of categories"
-                (click)="goTo(category.link)">{{ category.title }}</button>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
+<app-header />
+<div class="overlay">
+    <form>
+        <mat-form-field class="searchbar">
+            <input matInput type="text" (keyup)="onKey($event)" placeholder="Search...">
+        </mat-form-field>
+    </form>
+</div>
+<app-recipes-list [recipesToShow]="recipes"></app-recipes-list>

@@ -4,12 +4,14 @@ import * as RecipeActions from "../actions/recipes.actions";
 
 export interface RecipesState {
   recipes: Recipe[];
+  filteredRecipes: Recipe[];
   loading: boolean;
   error: any;
 }
 
 export const initialState: RecipesState = {
   recipes: [],
+  filteredRecipes: [],
   loading: false,
   error: null,
 };
@@ -33,6 +35,13 @@ const recipesReducer = createReducer(
   }))
 );
 
+export const filteredRecipesReducer = createReducer(
+  initialState,
+  on(RecipeActions.setFilteredRecipes, (state, { recipes }) => ({
+    ...state,
+    filteredRecipes: recipes,
+  }))
+);
 export function reducer(state: RecipesState | undefined, action: Action) {
   return recipesReducer(state, action);
 }
