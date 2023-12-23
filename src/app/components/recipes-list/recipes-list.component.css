@@ -1,54 +1,30 @@
-.recipe-panel {
-    padding: 20px;
+.recipe-card {
     background-color: #f2bcf8;
     width: 100%;
-    margin: 0 10px;
+    max-width: 600px;
+    overflow: hidden;
+    margin: 10px;
 }
 
-.mat-grid-tile-content {
-    display: block !important;
-}
-
-.panels {
-    text-align: center;
-    margin: auto;
-    width: 80%;
-}
-
-button {
-    right: 20px;
-    position: absolute;
+.button-container {
+    display: flex;
+    justify-content: center;
 }
 
 .title {
     font-size: 22px;
     color: #000;
+    text-align: center;
+    margin-top: 10px;
 }
-
-.subtitle {
-    font-size: 20px;
-    margin: 20px 0;
-    font-weight: 500;
-}
-
 
 .icon {
     margin: 0 6px 0 0;
-}
-
-/* these icons have some offset, so they need additional margin */
-.subtitle-icon {
-    margin: 0 6px -3px 0;
-
 }
 
 .content {
     font-size: 16px;
     text-align: start;
     padding: 0;
-}
-
-.left-align {
-    position: absolute;
-    left: 0;
+    display: block;
 }
