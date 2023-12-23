@@ -3,7 +3,8 @@
     width: 100%;
     max-width: 600px;
     overflow: hidden;
-    margin: 10px;
+    margin: 20px;
+    padding: 1vh;
 }
 
 .button-container {

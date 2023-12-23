@@ -11,7 +11,10 @@
     width: 80%;
 }
 
-
 .overlay {
     text-align: center;
+}
+
+.checkboxes {
+    margin-bottom: 10px;
 }

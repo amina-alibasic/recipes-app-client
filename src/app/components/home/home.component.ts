@@ -93,15 +93,16 @@ export class HomeComponent implements OnInit {
 
   search(event: any): void {
     const searchText = event.target.value.trim().toLowerCase();
-    // First check if any of the checkboxes are checked, if so -> search only within that category, if no -> search all
 
-    // start searching after user types more than 2 characters
+    // Start searching after user types more than 2 characters
     if (searchText.length > 2) {
+      // First check if any of the checkboxes are checked, if so -> search only within that category, if no -> search all
       if (this.selectedCategories.length === 0) {
         this.filteredRecipes = this.recipes.filter((recipe) =>
           recipe.name.toLowerCase().includes(searchText)
         );
       } else {
+        // if there are categories selected, filter both by name and category
         this.filteredRecipes = this.recipes.filter(
           (recipe) =>
             this.selectedCategories.includes(recipe.category.toLowerCase()) &&

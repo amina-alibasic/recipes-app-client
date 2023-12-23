@@ -1,1 +1,22 @@
-<p>add-recipe works!</p>
+<form class="container" #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="recipe-name">
+        <mat-label>Recipe Name</mat-label>
+        <input matInput placeholder="Enter Recipe Name" [(ngModel)]="recipeName" name="recipeName" required>
+    </mat-form-field>
+
+    <label style="color: #000; font-size: 16px;">Select recipe category:</label>
+    <mat-radio-group class="category-buttons" [(ngModel)]="selectedCategory" name="category" required>
+        <mat-radio-button *ngFor="let category of categories" [value]="category.value">
+            {{category.label}}
+        </mat-radio-button>
+    </mat-radio-group>
+
+
+    <mat-form-field class="recipe-preparation">
+        <mat-label>Recipe Preparation</mat-label>
+        <textarea matInput placeholder="Details" [(ngModel)]="recipeDetails" name="recipeDetails"
+            (input)="autoResize($event)" #recipeDetailsTextarea></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="button" [disabled]="!recipeForm.valid" type="submit">Submit</button>
+</form>
