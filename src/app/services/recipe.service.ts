@@ -7,7 +7,7 @@ import { Recipe } from "../classes/recipe";
   providedIn: "root",
 })
 export class RecipeService {
-  private recipesUrl = "assets/recipes.json"; // Path to your local JSON file
+  private recipesUrl = "assets/recipes.json"; // Path to the local JSON file
 
   constructor(private http: HttpClient) {}
 

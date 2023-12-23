@@ -19,7 +19,6 @@ export class AddRecipeComponent {
   @ViewChild("recipeDetailsTextarea") recipeDetailsTextarea!: ElementRef;
 
   onSubmit() {
-    // You can access entered values here and perform further actions
     console.log("Recipe Name:", this.recipeName);
     console.log("Selected Category:", this.selectedCategory);
     console.log("Recipe Details:", this.recipeDetails);
