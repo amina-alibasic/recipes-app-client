@@ -1,6 +1,6 @@
-import { createReducer, on, Action } from "@ngrx/store";
-import { Recipe } from "../../classes/recipe"; // Define the Recipe model
-import * as RecipeActions from "../actions/recipes.actions";
+import { createReducer, on, Action } from '@ngrx/store';
+import { Recipe } from '../../classes/recipe'; // Define the Recipe model
+import * as RecipeActions from '../actions/recipes.actions';
 
 export interface RecipesState {
   recipes: Recipe[];

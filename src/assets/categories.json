@@ -1,14 +1,16 @@
-{ "categories": [
+{
+  "categories": [
     {
-        "id": 1,
-        "title": "Breakfast"
+      "id": 1,
+      "title": "Breakfast"
     },
     {
-        "id": 2,
-        "title": "Main Course Meal"
-    },    {
-        "id": 3,
-        "title": "Dessert"
+      "id": 2,
+      "title": "Main Course Meal"
+    },
+    {
+      "id": 3,
+      "title": "Dessert"
     }
-]
+  ]
 }

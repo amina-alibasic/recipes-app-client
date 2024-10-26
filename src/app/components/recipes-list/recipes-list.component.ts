@@ -1,16 +1,16 @@
-import { Component, Input } from "@angular/core";
-import { Recipe } from "src/app/classes/recipe";
+import { Component, Input } from '@angular/core';
+import { Recipe } from 'src/app/classes/recipe';
 
 @Component({
-  selector: "app-recipes-list",
-  templateUrl: "./recipes-list.component.html",
-  styleUrls: ["./recipes-list.component.css"],
+  selector: 'app-recipes-list',
+  templateUrl: './recipes-list.component.html',
+  styleUrls: ['./recipes-list.component.css'],
 })
 export class RecipesListComponent {
   @Input() recipesToShow: Recipe[] = [];
 
   getNumberOfCharacters(): number {
-    var element = document.getElementById("title");
+    var element = document.getElementById('title');
     if (element) {
       var width = element.offsetWidth;
 

@@ -1,8 +1,8 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { RecipesState } from "../reducers/recipes.reducers";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { RecipesState } from '../reducers/recipes.reducers';
 
 export const selectRecipesState =
-  createFeatureSelector<RecipesState>("recipes");
+  createFeatureSelector<RecipesState>('recipes');
 
 export const selectRecipes = createSelector(
   selectRecipesState,

@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Recipe } from "../classes/recipe";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Recipe } from '../classes/recipe';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RecipeService {
-  private recipesUrl = "assets/recipes.json"; // Path to the local JSON file
+  private recipesUrl = 'assets/recipes.json'; // Path to the local JSON file
 
   constructor(private http: HttpClient) {}
 

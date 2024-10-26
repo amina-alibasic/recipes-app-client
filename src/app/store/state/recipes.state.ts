@@ -1,4 +1,4 @@
-import { Recipe } from "src/app/classes/recipe";
+import { Recipe } from 'src/app/classes/recipe';
 
 export interface AppState {
   recipes: Recipe[];

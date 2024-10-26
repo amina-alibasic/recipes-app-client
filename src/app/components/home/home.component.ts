@@ -1,20 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { Recipe } from "src/app/classes/recipe";
-import { Store, select } from "@ngrx/store";
-import { selectRecipes } from "../../store/selectors/recipes.selector";
-import { AppState } from "src/app/store/state/recipes.state";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/classes/recipe';
+import { Store, select } from '@ngrx/store';
+import { selectRecipes } from '../../store/selectors/recipes.selector';
+import { AppState } from 'src/app/store/state/recipes.state';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   selectRecipesLoading,
   selectRecipesError,
-} from "../../store/selectors/recipes.selector";
-import * as RecipeActions from "../../store/actions/recipes.actions";
-import { Observable } from "rxjs";
-import { Router } from "@angular/router";
+} from '../../store/selectors/recipes.selector';
+import * as RecipeActions from '../../store/actions/recipes.actions';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   recipes: Recipe[] = [];
@@ -50,16 +50,16 @@ export class HomeComponent implements OnInit {
     });
   }
   subscribeToCheckboxChanges(): void {
-    this.checkboxes.get("breakfasts")?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, "breakfast");
+    this.checkboxes.get('breakfasts')?.valueChanges.subscribe((value) => {
+      this.handleCheckboxChange(value, 'breakfast');
     });
 
-    this.checkboxes.get("mainCourseMeals")?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, "main course meal");
+    this.checkboxes.get('mainCourseMeals')?.valueChanges.subscribe((value) => {
+      this.handleCheckboxChange(value, 'main course meal');
     });
 
-    this.checkboxes.get("desserts")?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, "dessert");
+    this.checkboxes.get('desserts')?.valueChanges.subscribe((value) => {
+      this.handleCheckboxChange(value, 'dessert');
     });
   }
   handleCheckboxChange(value: boolean, category: string): void {

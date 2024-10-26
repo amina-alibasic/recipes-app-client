@@ -2,17 +2,27 @@
   <mat-grid-tile *ngFor="let recipe of recipesToShow">
     <mat-card class="recipe-card">
       <mat-card-header class="content">
-        <mat-card-title class="title" id="title"
-          *ngIf="recipe.name.length <= getNumberOfCharacters()">{{recipe.name}}</mat-card-title>
-        <mat-card-title class="title" id="title"
-          *ngIf="recipe.name.length > getNumberOfCharacters()">{{recipe.name.substring(0,getNumberOfCharacters())}}...</mat-card-title>
+        <mat-card-title
+          class="title"
+          id="title"
+          *ngIf="recipe.name.length <= getNumberOfCharacters()"
+          >{{ recipe.name }}</mat-card-title
+        >
+        <mat-card-title
+          class="title"
+          id="title"
+          *ngIf="recipe.name.length > getNumberOfCharacters()"
+          >{{
+            recipe.name.substring(0, getNumberOfCharacters())
+          }}...</mat-card-title
+        >
       </mat-card-header>
 
       <mat-card-actions class="button-container">
-        <button mat-raised-button color="accent" class="button"> OPEN RECIPE <mat-icon
-            class="icon">open_in_new</mat-icon> </button>
+        <button mat-raised-button color="accent" class="button">
+          OPEN RECIPE <mat-icon class="icon">open_in_new</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
-
 </mat-grid-list>
