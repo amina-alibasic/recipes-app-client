@@ -4,14 +4,12 @@ import * as RecipeActions from '../actions/recipes.actions';
 
 export interface RecipesState {
   recipes: Recipe[];
-  filteredRecipes: Recipe[];
   loading: boolean;
   error: any;
 }
 
 export const initialState: RecipesState = {
   recipes: [],
-  filteredRecipes: [],
   loading: false,
   error: null,
 };
@@ -25,7 +23,7 @@ const recipeReducer = createReducer(
   })),
   on(RecipeActions.loadRecipesSuccess, (state, { recipes }) => ({
     ...state,
-    recipes,
+    recipes: [...state.recipes, ...recipes],
     loading: false,
   })),
   on(RecipeActions.loadRecipesFailure, (state, { error }) => ({

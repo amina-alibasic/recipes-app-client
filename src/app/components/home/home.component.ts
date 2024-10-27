@@ -9,7 +9,7 @@ import {
   selectRecipesError,
 } from '../../store/selectors/recipes.selector';
 import * as RecipeActions from '../../store/actions/recipes.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/classes/category';
 import { selectCategories } from 'src/app/store/selectors/categories.selector';
@@ -22,10 +22,12 @@ export class HomeComponent implements OnInit {
   recipes: Recipe[] = [];
   categories: Category[] = [];
   selectedCategories: number[] = [];
-  filteredRecipes: Recipe[] = [];
   recipesLoading$!: Observable<boolean>;
   recipesError$!: Observable<any>;
   searchForm!: FormGroup;
+
+  private currentPage = 0;
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private store: Store<AppState>,
@@ -41,17 +43,32 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.recipesLoading$ = this.store.pipe(select(selectRecipesLoading));
     this.recipesError$ = this.store.pipe(select(selectRecipesError));
-    this.store.pipe(select(selectRecipes)).subscribe((recipes: Recipe[]) => {
-      this.recipes = recipes;
-      this.filteredRecipes = recipes;
-    });
-    this.store
-      .pipe(select(selectCategories))
-      .subscribe((categories: Category[]) => {
-        this.categories = categories;
-        this.initializeCheckboxes();
-        this.subscribeToCheckboxChanges();
-      });
+    this.subscription.add(
+      this.store.pipe(select(selectRecipes)).subscribe((recipes: Recipe[]) => {
+        this.recipes = recipes;
+      })
+    );
+
+    this.subscription.add(
+      this.store
+        .pipe(select(selectCategories))
+        .subscribe((categories: Category[]) => {
+          this.categories = categories;
+          this.initializeCheckboxes();
+          this.subscribeToCheckboxChanges();
+        })
+    );
+    this.setupScrollListener();
+  }
+
+  loadRecipes(searchText?: string): void {
+    this.store.dispatch(
+      RecipeActions.loadRecipes({
+        categoryIds: this.selectedCategories,
+        searchValue: searchText,
+        page: this.currentPage,
+      })
+    );
   }
 
   initializeCheckboxes(): void {
@@ -73,16 +90,41 @@ export class HomeComponent implements OnInit {
     checkboxesValue?.valueChanges.subscribe((values) => {
       this.selectedCategories = this.getSelectedCategories(values);
       if (this.selectedCategories.length > 0) {
-        console.log(this.selectedCategories);
-        this.store.dispatch(
-          RecipeActions.loadRecipes({
-            categoryIds: this.selectedCategories,
-          })
-        );
-      } else {
-        this.store.dispatch(RecipeActions.loadRecipes({}));
+        this.loadRecipes();
       }
     });
+  }
+
+  setupScrollListener(): void {
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
+
+  onScroll(): void {
+    console.log('onScroll called');
+    // Check if user has scrolled to the bottom of the page
+    const windowHeight =
+      'innerHeight' in window
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    const offset = window.scrollY + windowHeight;
+    // If the user has scrolled to the bottom, load more recipes
+    if (offset >= height) {
+      if (this.recipes.length % 20 === 0) {
+        // previous API request returned 20 recipes, meaning there might be more in the database
+        // else, all recipes are fetched
+        this.currentPage++;
+        this.loadRecipes();
+      }
+    }
   }
 
   getSelectedCategories(values: any): number[] {
@@ -100,28 +142,15 @@ export class HomeComponent implements OnInit {
 
     // Start searching after user types more than 2 characters
     if (searchText.length > 2) {
-      // First check if any of the checkboxes are checked, if so -> search only within that category, if no -> search all
-      if (this.selectedCategories.length === 0) {
-        RecipeActions.loadRecipes({
-          searchValue: searchText,
-        });
-      } else {
-        // if there are categories selected, filter both by name and category
-        RecipeActions.loadRecipes({
-          categoryIds: this.selectedCategories,
-          searchValue: searchText,
-        });
-      }
+      this.loadRecipes(searchText);
     } else {
       // If search text is less than 3 characters, do not filter by search text, only by category (if there is any)
-      if (this.selectedCategories.length !== 0) {
-        RecipeActions.loadRecipes({
-          categoryIds: this.selectedCategories,
-        });
-      } else {
-        // no category checked, no search text -> show all
-        RecipeActions.loadRecipes({});
-      }
+      this.loadRecipes();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe(); // Clean up subscriptions
+    window.removeEventListener('scroll', this.onScroll.bind(this));
   }
 }
