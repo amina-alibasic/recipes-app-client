@@ -11,13 +11,24 @@ export class RecipeEffects {
   loadRecipes$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RecipeActions.loadRecipes),
-      switchMap(() =>
-        this.recipeService.getAllRecipes().pipe(
-          map((recipes: Recipe[]) =>
-            RecipeActions.loadRecipesSuccess({ recipes })
-          ),
-          catchError((error) => of(RecipeActions.loadRecipesFailure({ error })))
-        )
+      switchMap(({ sortBy, sortOrder, searchValue, categoryIds, page, size }) =>
+        this.recipeService
+          .getAllRecipes(
+            sortBy,
+            sortOrder,
+            searchValue,
+            categoryIds,
+            page,
+            size
+          )
+          .pipe(
+            map((recipes: Recipe[]) =>
+              RecipeActions.loadRecipesSuccess({ recipes })
+            ),
+            catchError((error) =>
+              of(RecipeActions.loadRecipesFailure({ error }))
+            )
+          )
       )
     )
   );

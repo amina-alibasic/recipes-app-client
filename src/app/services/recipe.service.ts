@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../classes/recipe';
 
@@ -11,8 +11,28 @@ export class RecipeService {
 
   constructor(private http: HttpClient) {}
 
-  getAllRecipes(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/recipes/all`);
+  getAllRecipes(
+    sortBy: string = 'DATE',
+    sortOrder: string = 'DESC',
+    searchValue?: string,
+    categoryIds?: number[],
+    page: number = 0,
+    size: number = 20
+  ): Observable<Recipe[]> {
+    let params = new HttpParams()
+      .set('sortBy', sortBy)
+      .set('sortOrder', sortOrder)
+      .set('page', page)
+      .set('size', size);
+    if (searchValue) {
+      params = params.set('searchValue', searchValue);
+    }
+    if (categoryIds && categoryIds.length > 0) {
+      params = params.set('categoryIds', categoryIds.join(','));
+    }
+    return this.http.get<Recipe[]>(`${this.baseUrl}/recipes/all`, {
+      params,
+    });
   }
 
   getRecipeById(id: number): Observable<any> {

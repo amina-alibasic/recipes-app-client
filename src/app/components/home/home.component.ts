@@ -3,11 +3,12 @@ import { Recipe } from 'src/app/classes/recipe';
 import { Store, select } from '@ngrx/store';
 import { selectRecipes } from '../../store/selectors/recipes.selector';
 import { AppState } from 'src/app/store/state/recipes.state';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   selectRecipesLoading,
   selectRecipesError,
 } from '../../store/selectors/recipes.selector';
+import * as RecipeActions from '../../store/actions/recipes.actions';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/classes/category';
@@ -20,11 +21,11 @@ import { selectCategories } from 'src/app/store/selectors/categories.selector';
 export class HomeComponent implements OnInit {
   recipes: Recipe[] = [];
   categories: Category[] = [];
+  selectedCategories: number[] = [];
   filteredRecipes: Recipe[] = [];
   recipesLoading$!: Observable<boolean>;
   recipesError$!: Observable<any>;
   searchForm!: FormGroup;
-  selectedCategories: string[] = [];
 
   constructor(
     private store: Store<AppState>,
@@ -48,32 +49,45 @@ export class HomeComponent implements OnInit {
       .pipe(select(selectCategories))
       .subscribe((categories: Category[]) => {
         this.categories = categories;
+        this.initializeCheckboxes();
+        this.subscribeToCheckboxChanges();
       });
-    this.initializeCheckboxes();
-    this.subscribeToCheckboxChanges();
   }
 
   initializeCheckboxes(): void {
-    const checkboxGroup = this.searchForm.get('checkboxes') as FormGroup;
-    this.categories.forEach((category) => {
-      checkboxGroup.addControl(
-        category.id.toString(),
-        this.formBuilder.control(false)
-      );
-    });
+    const checkboxesControls = this.categories.reduce(
+      (acc: { [key: string]: boolean }, category) => {
+        acc[category.id] = false;
+        return acc;
+      },
+      {}
+    );
+    this.searchForm.setControl(
+      'checkboxes',
+      this.formBuilder.group(checkboxesControls)
+    );
   }
 
   subscribeToCheckboxChanges(): void {
-    this.searchForm.valueChanges.subscribe((values) => {
-      console.log('Values checkboxes: >>>>', values);
-      const selectedCategoryIds = this.getSelectedCategories();
-      // Call API with selected category IDs
+    const checkboxesValue = this.searchForm.get('checkboxes');
+    checkboxesValue?.valueChanges.subscribe((values) => {
+      this.selectedCategories = this.getSelectedCategories(values);
+      if (this.selectedCategories.length > 0) {
+        console.log(this.selectedCategories);
+        this.store.dispatch(
+          RecipeActions.loadRecipes({
+            categoryIds: this.selectedCategories,
+          })
+        );
+      } else {
+        this.store.dispatch(RecipeActions.loadRecipes({}));
+      }
     });
   }
 
-  getSelectedCategories(): number[] {
-    return Object.keys(this.searchForm.value)
-      .filter((key) => this.searchForm.value[key])
+  getSelectedCategories(values: any): number[] {
+    return Object.keys(values)
+      .filter((key) => values[key])
       .map(Number);
   }
 
@@ -88,27 +102,25 @@ export class HomeComponent implements OnInit {
     if (searchText.length > 2) {
       // First check if any of the checkboxes are checked, if so -> search only within that category, if no -> search all
       if (this.selectedCategories.length === 0) {
-        this.filteredRecipes = this.recipes.filter((recipe) =>
-          recipe.name.toLowerCase().includes(searchText)
-        );
+        RecipeActions.loadRecipes({
+          searchValue: searchText,
+        });
       } else {
         // if there are categories selected, filter both by name and category
-        this.filteredRecipes = this.recipes.filter(
-          (recipe) =>
-            this.selectedCategories.includes(
-              recipe.category.name.toLowerCase()
-            ) && recipe.name.toLowerCase().includes(searchText)
-        );
+        RecipeActions.loadRecipes({
+          categoryIds: this.selectedCategories,
+          searchValue: searchText,
+        });
       }
     } else {
       // If search text is less than 3 characters, do not filter by search text, only by category (if there is any)
       if (this.selectedCategories.length !== 0) {
-        this.filteredRecipes = this.recipes.filter((recipe) =>
-          this.selectedCategories.includes(recipe.category.name.toLowerCase())
-        );
+        RecipeActions.loadRecipes({
+          categoryIds: this.selectedCategories,
+        });
       } else {
         // no category checked, no search text -> show all
-        this.filteredRecipes = this.recipes;
+        RecipeActions.loadRecipes({});
       }
     }
   }

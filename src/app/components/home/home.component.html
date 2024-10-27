@@ -17,12 +17,12 @@
         placeholder="Search..."
       />
     </mat-form-field>
-    <div class="searchForm">
-      <span *ngFor="let category of categories">
-        <mat-checkbox [formControlName]="category.id.toString()">{{
-          category.name
-        }}</mat-checkbox>
-      </span>
+    <div class="searchForm" formGroupName="checkboxes">
+      <mat-checkbox
+        *ngFor="let category of categories"
+        [formControlName]="category.id"
+        >{{ category.name }}</mat-checkbox
+      >
     </div>
   </form>
 </div>

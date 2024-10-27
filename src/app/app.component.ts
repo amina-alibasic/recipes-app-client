@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
 
   loadRecipes(): void {
-    this.store.dispatch(RecipeActions.loadRecipes());
+    this.store.dispatch(RecipeActions.loadRecipes({}));
   }
 
   loadCategories(): void {
