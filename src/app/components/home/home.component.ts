@@ -8,9 +8,10 @@ import {
   selectRecipesLoading,
   selectRecipesError,
 } from '../../store/selectors/recipes.selector';
-import * as RecipeActions from '../../store/actions/recipes.actions';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Category } from 'src/app/classes/category';
+import { selectCategories } from 'src/app/store/selectors/categories.selector';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,73 +19,62 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   recipes: Recipe[] = [];
+  categories: Category[] = [];
   filteredRecipes: Recipe[] = [];
   recipesLoading$!: Observable<boolean>;
   recipesError$!: Observable<any>;
-  checkboxes!: FormGroup;
+  searchForm!: FormGroup;
   selectedCategories: string[] = [];
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.searchForm = this.formBuilder.group({
+      searchTerm: [''],
+      checkboxes: this.formBuilder.group({}),
+    });
+  }
 
   ngOnInit(): void {
     this.recipesLoading$ = this.store.pipe(select(selectRecipesLoading));
     this.recipesError$ = this.store.pipe(select(selectRecipesError));
-    this.store.dispatch(RecipeActions.loadRecipes());
     this.store.pipe(select(selectRecipes)).subscribe((recipes: Recipe[]) => {
       this.recipes = recipes;
       this.filteredRecipes = recipes;
     });
-    this.initializeForm();
+    this.store
+      .pipe(select(selectCategories))
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
+      });
+    this.initializeCheckboxes();
     this.subscribeToCheckboxChanges();
   }
 
-  initializeForm(): void {
-    this.checkboxes = this.formBuilder.group({
-      breakfasts: false,
-      mainCourseMeals: false,
-      desserts: false,
-    });
-  }
-  subscribeToCheckboxChanges(): void {
-    this.checkboxes.get('breakfasts')?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, 'breakfast');
-    });
-
-    this.checkboxes.get('mainCourseMeals')?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, 'main course meal');
-    });
-
-    this.checkboxes.get('desserts')?.valueChanges.subscribe((value) => {
-      this.handleCheckboxChange(value, 'dessert');
-    });
-  }
-  handleCheckboxChange(value: boolean, category: string): void {
-    if (value) {
-      // checkbox is checked
-      this.selectedCategories.push(category);
-    } else {
-      // value = false, checkbox was unchecked, or it was initially unchecked, so delete it
-      const index = this.selectedCategories.indexOf(category);
-      if (index !== -1) {
-        this.selectedCategories.splice(index, 1);
-      }
-    }
-
-    this.updateFilteredRecipes();
-  }
-
-  updateFilteredRecipes(): void {
-    if (this.selectedCategories.length === 0) {
-      this.filteredRecipes = this.recipes;
-    } else {
-      this.filteredRecipes = this.recipes.filter((recipe) =>
-        this.selectedCategories.includes(recipe.category.toLowerCase())
+  initializeCheckboxes(): void {
+    const checkboxGroup = this.searchForm.get('checkboxes') as FormGroup;
+    this.categories.forEach((category) => {
+      checkboxGroup.addControl(
+        category.id.toString(),
+        this.formBuilder.control(false)
       );
-    }
+    });
+  }
+
+  subscribeToCheckboxChanges(): void {
+    this.searchForm.valueChanges.subscribe((values) => {
+      console.log('Values checkboxes: >>>>', values);
+      const selectedCategoryIds = this.getSelectedCategories();
+      // Call API with selected category IDs
+    });
+  }
+
+  getSelectedCategories(): number[] {
+    return Object.keys(this.searchForm.value)
+      .filter((key) => this.searchForm.value[key])
+      .map(Number);
   }
 
   goTo(link: String) {
@@ -105,15 +95,16 @@ export class HomeComponent implements OnInit {
         // if there are categories selected, filter both by name and category
         this.filteredRecipes = this.recipes.filter(
           (recipe) =>
-            this.selectedCategories.includes(recipe.category.toLowerCase()) &&
-            recipe.name.toLowerCase().includes(searchText)
+            this.selectedCategories.includes(
+              recipe.category.name.toLowerCase()
+            ) && recipe.name.toLowerCase().includes(searchText)
         );
       }
     } else {
       // If search text is less than 3 characters, do not filter by search text, only by category (if there is any)
       if (this.selectedCategories.length !== 0) {
         this.filteredRecipes = this.recipes.filter((recipe) =>
-          this.selectedCategories.includes(recipe.category.toLowerCase())
+          this.selectedCategories.includes(recipe.category.name.toLowerCase())
         );
       } else {
         // no category checked, no search text -> show all

@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { RecipeService } from '../../services/recipe.service';
 import * as RecipeActions from '../actions/recipes.actions';
+import { Recipe } from 'src/app/classes/recipe';
 
 @Injectable()
 export class RecipeEffects {
@@ -11,8 +12,10 @@ export class RecipeEffects {
     this.actions$.pipe(
       ofType(RecipeActions.loadRecipes),
       switchMap(() =>
-        this.recipeService.getRecipes().pipe(
-          map((recipes) => RecipeActions.loadRecipesSuccess({ recipes })),
+        this.recipeService.getAllRecipes().pipe(
+          map((recipes: Recipe[]) =>
+            RecipeActions.loadRecipesSuccess({ recipes })
+          ),
           catchError((error) => of(RecipeActions.loadRecipesFailure({ error })))
         )
       )

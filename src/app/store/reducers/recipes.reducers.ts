@@ -16,7 +16,7 @@ export const initialState: RecipesState = {
   error: null,
 };
 
-const recipesReducer = createReducer(
+const recipeReducer = createReducer(
   initialState,
   on(RecipeActions.loadRecipes, (state) => ({
     ...state,
@@ -35,6 +35,9 @@ const recipesReducer = createReducer(
   }))
 );
 
-export function reducer(state: RecipesState | undefined, action: Action) {
-  return recipesReducer(state, action);
+export function recipesReducer(
+  state: RecipesState | undefined,
+  action: Action
+) {
+  return recipeReducer(state, action);
 }

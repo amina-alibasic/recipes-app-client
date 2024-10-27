@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Recipe } from '../../classes/recipe'; // Define the Recipe model
+import { Recipe } from 'src/app/classes/recipe';
 
 export const loadRecipes = createAction('[Recipes] Load Recipes');
 export const loadRecipesSuccess = createAction(

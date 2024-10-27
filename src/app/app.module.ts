@@ -25,11 +25,13 @@ import { RecipesListComponent } from './components/recipes-list/recipes-list.com
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RecipeEffects } from './store/effects/recipes.effects';
-import { reducer } from './store/reducers/recipes.reducers';
+import { CategoryEffects } from './store/effects/categories.effects';
+import { recipesReducer } from './store/reducers/recipes.reducers';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { categoriesReducer } from './store/reducers/categories.reducers';
 
 @NgModule({
   declarations: [
@@ -63,8 +65,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatInputModule,
     FormsModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature('recipes', reducer), // 'recipes' is the feature name, and reducers.recipesReducer is your recipes reducer
-    EffectsModule.forRoot([RecipeEffects]),
+    StoreModule.forFeature('recipes', recipesReducer),
+    StoreModule.forFeature('categories', categoriesReducer),
+    EffectsModule.forRoot([RecipeEffects, CategoryEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
