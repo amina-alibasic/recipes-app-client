@@ -1,14 +1,14 @@
 # Recipes App 🍔
 
-<h3> An app containing bunch of different recipes, with ingredients, number of servings, date added and preparation instructions. </h3>
+<h3> An app for storing different recipes, with ingredients, number of servings, date added and preparation instructions. </h3>
 <br/>
-<span> Recipes are sorted into categories: desserts, breakfast, main course meals, etc.</span>
+Recipes are sorted into categories: desserts, breakfast, main course meals, etc.
 <br/>
-<span>If a category doesn't exist, it can be added.</span>
+If a category doesn't exist, it can be added.
 <br/>
-<span> Recipes can be searched by name and/or filtered by category. </span>
+Recipes can be searched by name and/or filtered by category.
 <br/>
-<span> There is an option to add new recipes and edit existing ones. </span>
+There is an option to add new recipes and edit existing ones. 
 <br/>
 <br/>
 
