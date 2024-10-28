@@ -32,6 +32,7 @@ import { AddRecipeComponent } from './components/add-recipe/add-recipe.component
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { categoriesReducer } from './store/reducers/categories.reducers';
+import { RecipeViewComponent } from './components/recipe-view/recipe-view.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { categoriesReducer } from './store/reducers/categories.reducers';
     HeaderComponent,
     SearchPipe,
     AddRecipeComponent,
+    RecipeViewComponent,
   ],
   imports: [
     BrowserModule,

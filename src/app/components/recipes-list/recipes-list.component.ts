@@ -24,4 +24,9 @@ export class RecipesListComponent {
     }
     return 0;
   }
+
+  openRecipe(id: number) {
+    const newTabUrl = `/recipe/${id}`;
+    window.open(newTabUrl, '_blank');
+  }
 }

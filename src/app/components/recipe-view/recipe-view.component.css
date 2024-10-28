@@ -1,0 +1,48 @@
+.recipe-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+}
+
+.mat-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.mat-card-title {
+  flex-grow: 1;
+}
+
+.date-added {
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+.ingredient-box,
+.instruction-box {
+  margin-top: 20px;
+}
+
+.category-container {
+  display: flex; /* Use flexbox for category layout */
+  align-items: center; /* Center items vertically */
+}
+
+mat-form-field {
+  width: 100% !important;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+.edit-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+button.mat-icon-button {
+  margin-left: 10px;
+}

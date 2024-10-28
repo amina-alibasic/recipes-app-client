@@ -1,1 +1,119 @@
-<p>recipe-view works!</p>
+<div class="recipe-container">
+  <div class="mat-card-header">
+    <div *ngIf="!editName; else editTitle">
+      <h2>{{ recipe.name }}</h2>
+      <button mat-icon-button (click)="enableEdit('Name')" *ngIf="!editName">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <!-- Editing -->
+    <ng-template #editTitle>
+      <div class="edit-title-container">
+        <mat-form-field appearance="fill" class="title-input">
+          <mat-label>Recipe Name</mat-label>
+          <input matInput [(ngModel)]="recipe.name" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="save('Name')">
+          Save
+        </button>
+        <button mat-button (click)="cancel('Name')">Cancel</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <span class="date-added">{{ recipe.date | date }}</span>
+
+  <div class="category-container">
+    <span>Category: </span>
+    <div *ngIf="!editCategory; else editCategoryTemplate">
+      <span>{{ recipe.category.name }}</span>
+      <button mat-icon-button (click)="enableEdit('Category')">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <ng-template #editCategoryTemplate>
+      <mat-form-field appearance="fill" class="category-input">
+        <mat-label>Select Category</mat-label>
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="categoryInput.name"
+          [matAutocomplete]="auto"
+          (input)="filterCategories()"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let category of filteredCategories"
+            [value]="category"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="save('Category')">
+        Save
+      </button>
+      <button mat-button (click)="cancel('Category')">Cancel</button>
+    </ng-template>
+  </div>
+
+  <div class="ingredient-box">
+    <div
+      *ngIf="!editIngredients; else editIngredientsTemplate"
+      class="ingredients-text"
+    >
+      <h2>Ingredients</h2>
+      {{ recipe.ingredients }}
+      <button mat-icon-button (click)="enableEdit('Ingredients')">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <!-- Editing -->
+    <ng-template #editIngredientsTemplate>
+      <mat-form-field appearance="fill">
+        <mat-label>Ingredients</mat-label>
+        <textarea matInput [(ngModel)]="recipe.ingredients" rows="3"></textarea>
+      </mat-form-field>
+      <div class="edit-buttons">
+        <button mat-raised-button color="primary" (click)="save('Ingredients')">
+          Save
+        </button>
+        <button mat-button (click)="cancel('Ingredients')">Cancel</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="instruction-box">
+    <div
+      *ngIf="!editInstructions; else editInstructionsTemplate"
+      class="preparation-instruction"
+    >
+      <h2>Preparation instructions</h2>
+      {{ recipe.preparationInstruction }}
+      <button mat-icon-button (click)="enableEdit('Instructions')">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <!-- Editing -->
+    <ng-template #editInstructionsTemplate>
+      <mat-form-field appearance="fill">
+        <mat-label>Preparation Instructions</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="recipe.preparationInstruction"
+          rows="5"
+        ></textarea>
+      </mat-form-field>
+      <div class="edit-buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="save('Instructions')"
+        >
+          Save
+        </button>
+        <button mat-button (click)="cancel('Instructions')">Cancel</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

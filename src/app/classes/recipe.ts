@@ -7,7 +7,7 @@ export class Recipe {
   servings: number;
   category: Category;
   preparationInstruction: string;
-  dateAdded: Date;
+  date: Date;
   ingredients: Ingredient[];
 
   constructor(
@@ -16,7 +16,7 @@ export class Recipe {
     servings: number,
     category: Category,
     preparationInstruction: string,
-    dateAdded: Date,
+    date: Date,
     ingredients: Ingredient[]
   ) {
     this.id = id;
@@ -24,7 +24,7 @@ export class Recipe {
     this.servings = servings;
     this.category = category;
     this.preparationInstruction = preparationInstruction;
-    this.dateAdded = dateAdded;
+    this.date = date;
     this.ingredients = ingredients;
   }
 }
