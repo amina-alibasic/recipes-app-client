@@ -14,7 +14,7 @@ export const loadRecipes = createAction(
 );
 export const loadRecipesSuccess = createAction(
   '[Recipes] Load Recipes Success',
-  props<{ recipes: Recipe[] }>()
+  props<{ recipes: Recipe[]; appendResults: boolean }>()
 );
 export const loadRecipesFailure = createAction(
   '[Recipes] Load Recipes Failure',

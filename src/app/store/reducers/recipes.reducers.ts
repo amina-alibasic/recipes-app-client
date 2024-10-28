@@ -21,9 +21,9 @@ const recipeReducer = createReducer(
     loading: true,
     error: null,
   })),
-  on(RecipeActions.loadRecipesSuccess, (state, { recipes }) => ({
+  on(RecipeActions.loadRecipesSuccess, (state, { recipes, appendResults }) => ({
     ...state,
-    recipes: [...state.recipes, ...recipes],
+    recipes: appendResults ? [...state.recipes, ...recipes] : recipes,
     loading: false,
   })),
   on(RecipeActions.loadRecipesFailure, (state, { error }) => ({

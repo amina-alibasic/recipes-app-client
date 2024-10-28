@@ -23,7 +23,10 @@ export class RecipeEffects {
           )
           .pipe(
             map((recipes: Recipe[]) =>
-              RecipeActions.loadRecipesSuccess({ recipes })
+              RecipeActions.loadRecipesSuccess({
+                recipes: recipes,
+                appendResults: page !== 0,
+              })
             ),
             catchError((error) =>
               of(RecipeActions.loadRecipesFailure({ error }))

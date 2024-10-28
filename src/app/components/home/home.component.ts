@@ -89,9 +89,10 @@ export class HomeComponent implements OnInit {
     const checkboxesValue = this.searchForm.get('checkboxes');
     checkboxesValue?.valueChanges.subscribe((values) => {
       this.selectedCategories = this.getSelectedCategories(values);
-      if (this.selectedCategories.length > 0) {
-        this.loadRecipes();
-      }
+      // category was selected or unselected => re-fetch regardless
+      // set currentPage = 0 for new lazy loading
+      this.currentPage = 0;
+      this.loadRecipes();
     });
   }
 
@@ -100,7 +101,6 @@ export class HomeComponent implements OnInit {
   }
 
   onScroll(): void {
-    console.log('onScroll called');
     // Check if user has scrolled to the bottom of the page
     const windowHeight =
       'innerHeight' in window
@@ -142,9 +142,12 @@ export class HomeComponent implements OnInit {
 
     // Start searching after user types more than 2 characters
     if (searchText.length > 2) {
+      // user searching by text => every new character means set the paging to 0
+      this.currentPage = 0;
       this.loadRecipes(searchText);
-    } else {
-      // If search text is less than 3 characters, do not filter by search text, only by category (if there is any)
+    } else if (searchText.length == 0) {
+      // when text is deleted, fetch all (or by category if present)
+      this.currentPage = 0;
       this.loadRecipes();
     }
   }
