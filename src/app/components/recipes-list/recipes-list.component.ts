@@ -29,4 +29,24 @@ export class RecipesListComponent {
     const newTabUrl = `/recipe/${id}`;
     window.open(newTabUrl, '_blank');
   }
+
+  formatDate(isoDateString: string): string {
+    const date = new Date(isoDateString);
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    const day = date.getDate();
+    const suffix =
+      day % 10 === 1 && day !== 11
+        ? 'st'
+        : day % 10 === 2 && day !== 12
+        ? 'nd'
+        : day % 10 === 3 && day !== 13
+        ? 'rd'
+        : 'th';
+    return formattedDate.replace(/\d+/, `${day}${suffix}`);
+  }
 }

@@ -167,11 +167,13 @@ export class HomeComponent implements OnInit {
   toggleSortOrder() {
     this.sortOrder = this.sortOrder === 'ASC' ? 'DESC' : 'ASC';
     // TODO: if current page = 0, means we can sort the 20 records fetched, no need to re-fetch
+    this.currentPage = 0;
     this.loadRecipes();
   }
 
-  searchRecipes() {
+  applyCategories() {
     this.selectedCategories = this.searchForm.get('selectedCategories')?.value;
+    this.currentPage = 0;
     this.loadRecipes();
   }
 

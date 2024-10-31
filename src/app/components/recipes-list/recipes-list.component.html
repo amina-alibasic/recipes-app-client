@@ -1,4 +1,8 @@
-<mat-grid-list cols="3" rowHeight="150">
+<mat-grid-list
+  cols="3"
+  rowHeight="150"
+  *ngIf="recipesToShow.length > 0; else noResults"
+>
   <mat-grid-tile *ngFor="let recipe of recipesToShow">
     <mat-card class="recipe-card">
       <mat-card-header class="content">
@@ -17,7 +21,11 @@
           }}...</mat-card-title
         >
       </mat-card-header>
-
+      <mat-card-content>
+        <span class="date-added-text">
+          Added on {{ formatDate(recipe.date.toString()) }}
+        </span>
+      </mat-card-content>
       <mat-card-actions class="button-container">
         <button
           mat-raised-button
@@ -31,3 +39,6 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+<ng-template #noResults>
+  <div class="no-results">No Results.</div>
+</ng-template>
