@@ -12,7 +12,7 @@ export class RecipeService {
   constructor(private http: HttpClient) {}
 
   getAllRecipes(
-    sortBy: string = 'DATE',
+    sortBy: string = 'date',
     sortOrder: string = 'DESC',
     searchValue?: string,
     categoryIds?: number[],

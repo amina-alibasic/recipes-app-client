@@ -28,5 +28,30 @@
       </div>
     </form>
   </div>
+  <div class="sort-by">
+    <span class="sort-by-text">SORT BY:</span>
+    <button
+      class="sort-button"
+      [class.highlighted]="sortBy === 'date'"
+      (click)="onSortChange('date')"
+    >
+      <mat-icon class="button-icon">calendar_today</mat-icon> DATE
+    </button>
+    <button
+      class="sort-button"
+      [class.highlighted]="sortBy === 'name'"
+      (click)="onSortChange('name')"
+    >
+      <mat-icon class="button-icon">sort_by_alpha</mat-icon> NAME
+    </button>
+  </div>
+  <div class="sort-order">
+    <button class="sort-button" (click)="toggleSortOrder()">
+      <mat-icon class="button-icon">{{
+        sortOrder === 'ASC' ? 'arrow_upward' : 'arrow_downward'
+      }}</mat-icon>
+      {{ sortOrder === 'ASC' ? 'ASC' : 'DESC' }}
+    </button>
+  </div>
 </div>
 <app-recipes-list [recipesToShow]="recipes"></app-recipes-list>

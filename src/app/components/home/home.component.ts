@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
   recipesLoading$!: Observable<boolean>;
   recipesError$!: Observable<any>;
   searchForm!: FormGroup;
-
+  sortBy: 'date' | 'name' = 'date';
+  sortOrder: 'ASC' | 'DESC' = 'DESC';
   private currentPage = 0;
   private subscription: Subscription = new Subscription();
 
@@ -67,6 +68,8 @@ export class HomeComponent implements OnInit {
         categoryIds: this.selectedCategories,
         searchValue: searchText,
         page: this.currentPage,
+        sortBy: this.sortBy,
+        sortOrder: this.sortOrder,
       })
     );
   }
@@ -150,6 +153,16 @@ export class HomeComponent implements OnInit {
       this.currentPage = 0;
       this.loadRecipes();
     }
+  }
+
+  onSortChange(sortType: 'date' | 'name') {
+    this.sortBy = sortType;
+    this.loadRecipes();
+  }
+
+  toggleSortOrder() {
+    this.sortOrder = this.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    this.loadRecipes();
   }
 
   ngOnDestroy(): void {
