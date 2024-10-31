@@ -7,23 +7,26 @@
   >
     Add Recipe
   </button>
-  <form [formGroup]="searchForm">
-    <mat-form-field class="searchbar">
-      <input
-        matInput
-        type="text"
-        (keyup)="search($event)"
-        formControlName="searchTerm"
-        placeholder="Search..."
-      />
-    </mat-form-field>
-    <div class="searchForm" formGroupName="checkboxes">
-      <mat-checkbox
-        *ngFor="let category of categories"
-        [formControlName]="category.id"
-        >{{ category.name }}</mat-checkbox
-      >
-    </div>
-  </form>
+  <div class="search-form">
+    <form [formGroup]="searchForm">
+      <mat-form-field class="searchbar">
+        <input
+          matInput
+          type="text"
+          (keyup)="search($event)"
+          formControlName="searchTerm"
+          placeholder="Search..."
+        />
+      </mat-form-field>
+      <div class="checkboxes" formGroupName="checkboxes">
+        <mat-checkbox
+          *ngFor="let category of categories"
+          [formControlName]="category.id"
+          class="custom-checkbox"
+          >{{ category.name }}</mat-checkbox
+        >
+      </div>
+    </form>
+  </div>
 </div>
 <app-recipes-list [recipesToShow]="recipes"></app-recipes-list>
