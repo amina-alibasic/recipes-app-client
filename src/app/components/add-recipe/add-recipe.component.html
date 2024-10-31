@@ -1,49 +1,71 @@
-<form class="container" #recipeForm="ngForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill" class="recipe-name">
-    <mat-label>Recipe Name</mat-label>
-    <input
-      matInput
-      placeholder="Enter Recipe Name"
-      [(ngModel)]="recipeName"
-      name="recipeName"
-      required
-    />
-  </mat-form-field>
-
-  <label style="color: #000; font-size: 16px">Select recipe category:</label>
-  <mat-radio-group
-    class="category-buttons"
-    [(ngModel)]="selectedCategory"
-    name="category"
-    required
-  >
-    <mat-radio-button
-      *ngFor="let category of categories"
-      [value]="category.value"
-    >
-      {{ category.label }}
-    </mat-radio-button>
-  </mat-radio-group>
-
-  <mat-form-field class="recipe-preparation">
-    <mat-label>Recipe Preparation</mat-label>
-    <textarea
-      matInput
-      placeholder="Details"
-      [(ngModel)]="recipeDetails"
-      name="recipeDetails"
-      (input)="autoResize($event)"
-      #recipeDetailsTextarea
-    ></textarea>
-  </mat-form-field>
-
-  <button
-    mat-raised-button
-    color="accent"
-    class="button"
-    [disabled]="!recipeForm.valid"
-    type="submit"
-  >
-    Submit
+<div class="overlay">
+  <button mat-icon-button matTooltip="Go Back" (click)="goBack()">
+    <mat-icon class="arrow-icon">arrow_back</mat-icon>
   </button>
-</form>
+
+  <form class="form-container" #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="recipe-name">
+      <mat-label>Recipe Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Recipe Name"
+        [(ngModel)]="recipeName"
+        name="recipeName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="categories-dropdown">
+      <mat-label>Select Category</mat-label>
+      <mat-select [formControlName]="'selectedCategories'" required>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="servings-container">
+      <span class="servings-text">Servings:</span>
+      <button
+        mat-button
+        (click)="servings = servings - 1"
+        [disabled]="servings === 1"
+        class="counter-buttons"
+      >
+        <mat-icon class="icon">remove</mat-icon>
+      </button>
+      <span class="servings-number">{{ servings }}</span>
+
+      <button
+        mat-button
+        (click)="servings = servings + 1"
+        class="counter-buttons"
+      >
+        <mat-icon class="icon">add</mat-icon>
+      </button>
+    </div>
+
+    <mat-form-field class="recipe-preparation">
+      <mat-label>Recipe Preparation</mat-label>
+      <textarea
+        matInput
+        placeholder="Preparation details"
+        [(ngModel)]="recipeDetails"
+        name="recipeDetails"
+        (input)="autoResize($event)"
+        #recipeDetailsTextarea
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      class="custom-apply-button"
+      [disabled]="!recipeForm.valid"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</div>

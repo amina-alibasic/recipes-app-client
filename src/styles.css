@@ -12,3 +12,9 @@ body {
   color: #fff;
   font-family: 'Noto Sans Mono', monospace;
 }
+
+.custom-apply-button {
+  flex-shrink: 0;
+  padding: 15px;
+  font-size: 16px;
+}

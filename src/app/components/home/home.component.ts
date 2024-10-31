@@ -56,8 +56,6 @@ export class HomeComponent implements OnInit {
         .pipe(select(selectCategories))
         .subscribe((categories: Category[]) => {
           this.categories = categories;
-          this.initializeCheckboxes();
-          this.subscribeToCheckboxChanges();
         })
     );
     this.setupScrollListener();
@@ -73,31 +71,6 @@ export class HomeComponent implements OnInit {
         sortOrder: this.sortOrder,
       })
     );
-  }
-
-  initializeCheckboxes(): void {
-    const checkboxesControls = this.categories.reduce(
-      (acc: { [key: string]: boolean }, category) => {
-        acc[category.id] = false;
-        return acc;
-      },
-      {}
-    );
-    this.searchForm.setControl(
-      'checkboxes',
-      this.formBuilder.group(checkboxesControls)
-    );
-  }
-
-  subscribeToCheckboxChanges(): void {
-    const checkboxesValue = this.searchForm.get('checkboxes');
-    checkboxesValue?.valueChanges.subscribe((values) => {
-      this.selectedCategories = this.getSelectedCategories(values);
-      // category was selected or unselected => re-fetch regardless
-      // set currentPage = 0 for new lazy loading
-      this.currentPage = 0;
-      this.loadRecipes();
-    });
   }
 
   setupScrollListener(): void {
@@ -129,12 +102,6 @@ export class HomeComponent implements OnInit {
         this.loadRecipes();
       }
     }
-  }
-
-  getSelectedCategories(values: any): number[] {
-    return Object.keys(values)
-      .filter((key) => values[key])
-      .map(Number);
   }
 
   goTo(link: String) {

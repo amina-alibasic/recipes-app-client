@@ -1,8 +1,19 @@
-.container {
+.overlay {
+  padding: 5vh;
+  display: flex;
+}
+
+.arrow-icon {
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 5vh;
+  margin: 0 40px;
 }
 
 .recipe-name {
@@ -13,11 +24,29 @@
   margin-bottom: 2vh;
 }
 
+.servings-container {
+  margin-bottom: 2vh;
+  .servings-text,
+  .servings-number {
+    font-size: 18px;
+  }
+
+  .servings-number {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  .counter-buttons {
+    padding: 0;
+    .icon {
+      color: #ffffff;
+      margin: 0;
+    }
+  }
+}
+
 .recipe-preparation {
   overflow: hidden;
   width: 100vh;
-}
-
-button {
-  margin: 5vh 0;
 }
