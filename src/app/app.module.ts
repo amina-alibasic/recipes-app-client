@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { categoriesReducer } from './store/reducers/categories.reducers';
 import { RecipeViewComponent } from './components/recipe-view/recipe-view.component';
 
@@ -66,6 +67,7 @@ import { RecipeViewComponent } from './components/recipe-view/recipe-view.compon
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatSelectModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('recipes', recipesReducer),
     StoreModule.forFeature('categories', categoriesReducer),

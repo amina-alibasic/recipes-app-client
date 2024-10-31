@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   recipes: Recipe[] = [];
   categories: Category[] = [];
   selectedCategories: number[] = [];
+  searchText: string = '';
   recipesLoading$!: Observable<boolean>;
   recipesError$!: Observable<any>;
   searchForm!: FormGroup;
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.searchForm = this.formBuilder.group({
       searchTerm: [''],
-      checkboxes: this.formBuilder.group({}),
+      selectedCategories: [[]],
     });
   }
 
@@ -62,11 +63,11 @@ export class HomeComponent implements OnInit {
     this.setupScrollListener();
   }
 
-  loadRecipes(searchText?: string): void {
+  loadRecipes(): void {
     this.store.dispatch(
       RecipeActions.loadRecipes({
         categoryIds: this.selectedCategories,
-        searchValue: searchText,
+        searchValue: this.searchText,
         page: this.currentPage,
         sortBy: this.sortBy,
         sortOrder: this.sortOrder,
@@ -141,15 +142,16 @@ export class HomeComponent implements OnInit {
   }
 
   search(event: any): void {
-    const searchText = event.target.value.trim().toLowerCase();
-
+    const textInput = event.target.value.trim().toLowerCase();
     // Start searching after user types more than 2 characters
-    if (searchText.length > 2) {
-      // user searching by text => every new character means set the paging to 0
+    if (textInput.length > 2) {
+      this.searchText = textInput;
+      // user searching by text => every new character means new results => set the paging to 0
       this.currentPage = 0;
-      this.loadRecipes(searchText);
-    } else if (searchText.length == 0) {
-      // when text is deleted, fetch all (or by category if present)
+      this.loadRecipes();
+    } else if (textInput.length == 0) {
+      // when text is erased, fetch all (or by category if present)
+      this.searchText = '';
       this.currentPage = 0;
       this.loadRecipes();
     }
@@ -157,11 +159,19 @@ export class HomeComponent implements OnInit {
 
   onSortChange(sortType: 'date' | 'name') {
     this.sortBy = sortType;
+    // TODO: if current page = 0, means we can sort the 20 records fetched, no need to re-fetch
+    this.currentPage = 0;
     this.loadRecipes();
   }
 
   toggleSortOrder() {
     this.sortOrder = this.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    // TODO: if current page = 0, means we can sort the 20 records fetched, no need to re-fetch
+    this.loadRecipes();
+  }
+
+  searchRecipes() {
+    this.selectedCategories = this.searchForm.get('selectedCategories')?.value;
     this.loadRecipes();
   }
 

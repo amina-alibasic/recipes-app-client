@@ -7,28 +7,35 @@
   >
     Add Recipe
   </button>
-  <div class="search-form">
-    <form [formGroup]="searchForm">
-      <mat-form-field class="searchbar">
-        <input
-          matInput
-          type="text"
-          (keyup)="search($event)"
-          formControlName="searchTerm"
-          placeholder="Search..."
-        />
-      </mat-form-field>
-      <div class="checkboxes" formGroupName="checkboxes">
-        <mat-checkbox
-          *ngFor="let category of categories"
-          [formControlName]="category.id"
-          class="custom-checkbox"
-          >{{ category.name }}</mat-checkbox
-        >
-      </div>
-    </form>
-  </div>
-  <div class="sort-by">
+  <form [formGroup]="searchForm" class="search-form-container">
+    <mat-form-field class="searchbar">
+      <input
+        matInput
+        type="text"
+        (keyup)="search($event)"
+        formControlName="searchTerm"
+        placeholder="Type to search by name..."
+      />
+    </mat-form-field>
+
+    <mat-form-field class="categories-dropdown">
+      <mat-label>Select Categories</mat-label>
+      <mat-select [formControlName]="'selectedCategories'" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      class="search-button"
+      (click)="searchRecipes()"
+    >
+      Search
+    </button>
+  </form>
+  <div class="sort-by-container">
     <span class="sort-by-text">SORT BY:</span>
     <button
       class="sort-button"
@@ -45,7 +52,7 @@
       <mat-icon class="button-icon">sort_by_alpha</mat-icon> NAME
     </button>
   </div>
-  <div class="sort-order">
+  <div class="sort-order-container">
     <button class="sort-button" (click)="toggleSortOrder()">
       <mat-icon class="button-icon">{{
         sortOrder === 'ASC' ? 'arrow_upward' : 'arrow_downward'
