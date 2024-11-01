@@ -3,54 +3,109 @@
     <mat-icon class="arrow-icon">arrow_back</mat-icon>
   </button>
 
-  <form class="form-container" #recipeForm="ngForm" (ngSubmit)="onSubmit()">
+  <form class="form-container" [formGroup]="recipeForm">
     <mat-form-field appearance="fill" class="recipe-name">
       <mat-label>Recipe Name</mat-label>
       <input
         matInput
+        formControlName="recipeName"
         placeholder="Enter Recipe Name"
-        [(ngModel)]="recipeName"
         name="recipeName"
         required
       />
     </mat-form-field>
 
-    <mat-form-field class="categories-dropdown">
-      <mat-label>Select Category</mat-label>
-      <mat-select [formControlName]="'selectedCategories'" required>
-        <mat-option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <!-- Categories -->
+    <div class="categories-container">
+      <mat-form-field class="categories-dropdown">
+        <mat-label>Select Category</mat-label>
+        <mat-select formControlName="selectedCategory">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="categories-text"
+        >Looking for a category that's not listed? Add your own!</span
+      >
+      <mat-icon class="categories-arrow-icon">arrow_forward</mat-icon>
+      <mat-form-field appearance="fill" class="new-cat-input">
+        <input
+          matInput
+          formControlName="newCategoryName"
+          placeholder="Enter Category Name"
+          name="newCategoryName"
+        />
+      </mat-form-field>
+    </div>
 
+    <!-- Servings -->
     <div class="servings-container">
-      <span class="servings-text">Servings:</span>
+      <span class="text">Servings:</span>
       <button
         mat-button
-        (click)="servings = servings - 1"
-        [disabled]="servings === 1"
+        (click)="decreaseServings()"
+        [disabled]="getServingsValue() === 1"
         class="counter-buttons"
       >
         <mat-icon class="icon">remove</mat-icon>
       </button>
-      <span class="servings-number">{{ servings }}</span>
+      <span class="servings-number text">{{ getServingsValue() }}</span>
 
-      <button
-        mat-button
-        (click)="servings = servings + 1"
-        class="counter-buttons"
-      >
+      <button mat-button (click)="increaseServings()" class="counter-buttons">
         <mat-icon class="icon">add</mat-icon>
       </button>
     </div>
 
+    <!-- Ingredients -->
+    <div>
+      <span class="text"> Ingredients:</span>
+      <div
+        class="ingredients-container"
+        *ngFor="let ingredient of ingredients; let i = index"
+      >
+        <mat-form-field appearance="fill" class="new-ingr-input">
+          <input
+            matInput
+            placeholder="Ingredient Name"
+            name="ingredientName"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="new-ingr-input">
+          <input
+            matInput
+            placeholder="Quantity"
+            name="ingredientQty"
+            required
+          />
+        </mat-form-field>
+        <button
+          mat-button
+          (click)="addNewIngredientsRow()"
+          class="counter-buttons"
+        >
+          <mat-icon class="icon">add</mat-icon>
+        </button>
+        <button
+          *ngIf="i !== 0"
+          mat-button
+          (click)="removeIngredientsRow(i)"
+          class="counter-buttons"
+        >
+          <mat-icon class="icon">remove</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Recipe Preparation -->
     <mat-form-field class="recipe-preparation">
       <mat-label>Recipe Preparation</mat-label>
       <textarea
         matInput
+        formControlName="recipeDetails"
         placeholder="Preparation details"
-        [(ngModel)]="recipeDetails"
         name="recipeDetails"
         (input)="autoResize($event)"
         #recipeDetailsTextarea
@@ -63,7 +118,7 @@
       color="accent"
       class="custom-apply-button"
       [disabled]="!recipeForm.valid"
-      type="submit"
+      (click)="onSubmit()"
     >
       Submit
     </button>
