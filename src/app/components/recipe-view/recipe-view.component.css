@@ -4,6 +4,10 @@
   display: flex;
 }
 
+span {
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+
 .recipe-display-wrapper {
   display: flex;
   align-items: flex-start;

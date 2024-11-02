@@ -17,16 +17,17 @@
         <span class="subtitle">Ingredients:</span>
         <ul>
           <li *ngFor="let ingredient of recipe.ingredients">
-            {{ ingredient.quantity }} {{ ingredient.name }}
+            <span>{{ ingredient.quantity }} {{ ingredient.name }}</span>
           </li>
         </ul>
       </div>
 
       <div class="row">
         <span class="subtitle">Preparation:</span>
-        <p class="preparation-text">
+        <br />
+        <span class="preparation-text">
           {{ recipe.preparationInstruction }}
-        </p>
+        </span>
       </div>
     </div>
     <img

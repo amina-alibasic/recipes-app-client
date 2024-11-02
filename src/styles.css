@@ -18,3 +18,7 @@ body {
   padding: 15px;
   font-size: 16px;
 }
+
+.mat-mdc-card-title {
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
