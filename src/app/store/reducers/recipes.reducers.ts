@@ -45,6 +45,16 @@ const recipeReducer = createReducer(
     ...state,
     error,
     loading: false,
+  })),
+  on(RecipeActions.deleteRecipeSuccess, (state, { id }) => ({
+    ...state,
+    recipes: state.recipes.filter((recipe) => recipe.id !== id), // Remove the deleted recipe
+    loading: false,
+  })),
+  on(RecipeActions.deleteRecipeFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
   }))
 );
 

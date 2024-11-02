@@ -12,14 +12,17 @@ export const loadRecipes = createAction(
     size?: number;
   }>()
 );
+
 export const loadRecipesSuccess = createAction(
   '[Recipes] Load Recipes Success',
   props<{ recipes: Recipe[]; appendResults: boolean }>()
 );
+
 export const loadRecipesFailure = createAction(
   '[Recipes] Load Recipes Failure',
   props<{ error: any }>()
 );
+
 export const postRecipe = createAction(
   '[Recipes] Post Recipe',
   props<{ recipe: Recipe }>()
@@ -32,5 +35,20 @@ export const postRecipeSuccess = createAction(
 
 export const postRecipeFailure = createAction(
   '[Recipes] Post Recipe Failure',
+  props<{ error: any }>()
+);
+
+export const deleteRecipe = createAction(
+  '[Recipes] Delete Recipe',
+  props<{ id: number }>()
+);
+
+export const deleteRecipeSuccess = createAction(
+  '[Recipes] Delete Recipe Success',
+  props<{ id: number }>()
+);
+
+export const deleteRecipeFailure = createAction(
+  '[Recipes] Delete Recipe Failure',
   props<{ error: any }>()
 );
