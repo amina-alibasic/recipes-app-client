@@ -16,7 +16,6 @@ import * as RecipeActions from '../../store/actions/recipes.actions';
 })
 export class AddRecipeComponent implements OnInit {
   recipeForm!: FormGroup;
-  // ingredients: Ingredient[] = [];
   categories: Category[] = [];
 
   constructor(
@@ -37,6 +36,7 @@ export class AddRecipeComponent implements OnInit {
   @ViewChild('recipeDetailsTextarea') recipeDetailsTextarea!: ElementRef;
 
   ngOnInit(): void {
+    document.title = `Recipes - Add Recipe`;
     this.store
       .pipe(select(selectCategories))
       .subscribe((categories: Category[]) => {
@@ -108,7 +108,9 @@ export class AddRecipeComponent implements OnInit {
       const newRecipe: Recipe = new Recipe(
         this.recipeForm.value.recipeName,
         this.getServingsValue(),
-        this.recipeForm.value.selectedCategory,
+        this.recipeForm.value.selectedCategory
+          ? this.recipeForm.value.selectedCategory
+          : new Category(this.recipeForm.value.newCategoryName),
         this.recipeForm.value.recipeDetails,
         this.recipeForm.value.ingredients
       );

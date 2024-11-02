@@ -43,6 +43,7 @@ export class RecipeViewComponent implements OnInit {
   getRecipeById(id: number): void {
     this.recipeService.getRecipeById(id).subscribe((data: Recipe) => {
       this.recipe = data;
+      document.title = `${this.recipe.name}`;
     });
   }
 

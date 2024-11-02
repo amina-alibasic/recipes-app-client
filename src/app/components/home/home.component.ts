@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.title = `Recipes - Home`;
     this.recipesLoading$ = this.store.pipe(select(selectRecipesLoading));
     this.recipesError$ = this.store.pipe(select(selectRecipesError));
     this.subscription.add(
