@@ -2,7 +2,7 @@ import { Category } from './category';
 import { Ingredient } from './ingredient';
 
 export class Recipe {
-  id: number = 0;
+  id?: number | undefined;
   name: string;
   servings: number;
   category: Category;

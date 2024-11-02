@@ -25,9 +25,11 @@ export class RecipesListComponent {
     return 0;
   }
 
-  openRecipe(id: number) {
-    const newTabUrl = `/recipe/${id}`;
-    window.open(newTabUrl, '_blank');
+  openRecipe(id: number | undefined) {
+    if (id) {
+      const newTabUrl = `/recipe/${id}`;
+      window.open(newTabUrl, '_blank');
+    }
   }
 
   formatDate(isoDateString: string): string {
