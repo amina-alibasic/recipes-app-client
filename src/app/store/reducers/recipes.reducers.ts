@@ -30,6 +30,21 @@ const recipeReducer = createReducer(
     ...state,
     error,
     loading: false,
+  })),
+  on(RecipeActions.postRecipe, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(RecipeActions.postRecipeSuccess, (state, { recipe }) => ({
+    ...state,
+    recipes: [...state.recipes, recipe], // Add the newly created recipe
+    loading: false,
+  })),
+  on(RecipeActions.postRecipeFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false,
   }))
 );
 

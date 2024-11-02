@@ -36,6 +36,20 @@ export class RecipeEffects {
     )
   );
 
+  postRecipe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RecipeActions.postRecipe),
+      switchMap(({ recipe }) =>
+        this.recipeService.postRecipe(recipe).pipe(
+          map((newRecipe: Recipe) =>
+            RecipeActions.postRecipeSuccess({ recipe: newRecipe })
+          ),
+          catchError((error) => of(RecipeActions.postRecipeFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private recipeService: RecipeService

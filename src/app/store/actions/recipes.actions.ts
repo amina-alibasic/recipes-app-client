@@ -20,3 +20,17 @@ export const loadRecipesFailure = createAction(
   '[Recipes] Load Recipes Failure',
   props<{ error: any }>()
 );
+export const postRecipe = createAction(
+  '[Recipes] Post Recipe',
+  props<{ recipe: Recipe }>()
+);
+
+export const postRecipeSuccess = createAction(
+  '[Recipes] Post Recipe Success',
+  props<{ recipe: Recipe }>()
+);
+
+export const postRecipeFailure = createAction(
+  '[Recipes] Post Recipe Failure',
+  props<{ error: any }>()
+);

@@ -20,10 +20,20 @@
       <mat-form-field class="categories-dropdown">
         <mat-label>Select Category</mat-label>
         <mat-select formControlName="selectedCategory">
-          <mat-option *ngFor="let category of categories" [value]="category.id">
+          <mat-option *ngFor="let category of categories" [value]="category">
             {{ category.name }}
           </mat-option>
         </mat-select>
+        <button
+          *ngIf="recipeForm.get('selectedCategory')?.value"
+          mat-icon-button
+          matSuffix
+          aria-label="Clear selection"
+          (click)="clearSelectedCategory()"
+          style="color: rgba(0, 0, 0, 0.5)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <span class="categories-text"
         >Looking for a category that's not listed? Add your own!</span
@@ -47,12 +57,18 @@
         (click)="decreaseServings()"
         [disabled]="getServingsValue() === 1"
         class="counter-buttons"
+        type="button"
       >
         <mat-icon class="icon">remove</mat-icon>
       </button>
       <span class="servings-number text">{{ getServingsValue() }}</span>
 
-      <button mat-button (click)="increaseServings()" class="counter-buttons">
+      <button
+        mat-button
+        (click)="increaseServings()"
+        class="counter-buttons"
+        type="button"
+      >
         <mat-icon class="icon">add</mat-icon>
       </button>
     </div>
@@ -62,40 +78,47 @@
       <span class="text"> Ingredients:</span>
       <div
         class="ingredients-container"
-        *ngFor="let ingredient of ingredients; let i = index"
+        formArrayName="ingredients"
+        *ngFor="let ingredient of ingredients.controls; let i = index"
       >
-        <mat-form-field appearance="fill" class="new-ingr-input">
-          <input
-            matInput
-            placeholder="Ingredient Name"
-            name="ingredientName"
-            required
-          />
-        </mat-form-field>
+        <div [formGroupName]="i">
+          <mat-form-field appearance="fill" class="new-ingr-input">
+            <input
+              matInput
+              placeholder="Ingredient Name"
+              formControlName="name"
+              name="ingredientName"
+              required
+            />
+          </mat-form-field>
 
-        <mat-form-field appearance="fill" class="new-ingr-input">
-          <input
-            matInput
-            placeholder="Quantity"
-            name="ingredientQty"
-            required
-          />
-        </mat-form-field>
-        <button
-          mat-button
-          (click)="addNewIngredientsRow()"
-          class="counter-buttons"
-        >
-          <mat-icon class="icon">add</mat-icon>
-        </button>
-        <button
-          *ngIf="i !== 0"
-          mat-button
-          (click)="removeIngredientsRow(i)"
-          class="counter-buttons"
-        >
-          <mat-icon class="icon">remove</mat-icon>
-        </button>
+          <mat-form-field appearance="fill" class="new-ingr-input">
+            <input
+              matInput
+              placeholder="Quantity"
+              formControlName="quantity"
+              name="ingredientQty"
+              required
+            />
+          </mat-form-field>
+          <button
+            mat-button
+            (click)="addNewIngredientsRow()"
+            class="counter-buttons"
+            type="button"
+          >
+            <mat-icon class="icon">add</mat-icon>
+          </button>
+          <button
+            *ngIf="i !== 0"
+            mat-button
+            (click)="removeIngredientsRow(i)"
+            class="counter-buttons"
+            type="button"
+          >
+            <mat-icon class="icon">remove</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
 

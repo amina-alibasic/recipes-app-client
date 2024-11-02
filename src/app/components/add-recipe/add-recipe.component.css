@@ -41,8 +41,6 @@
   }
 
   .counter-buttons {
-    position: relative;
-    bottom: 1.5vh;
     .icon {
       font-size: 24px;
       height: 24px;

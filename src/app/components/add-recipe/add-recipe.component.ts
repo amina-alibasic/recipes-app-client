@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Category } from 'src/app/classes/category';
 import { Ingredient } from 'src/app/classes/ingredient';
+import { Recipe } from 'src/app/classes/recipe';
 import { selectCategories } from 'src/app/store/selectors/categories.selector';
 import { AppState } from 'src/app/store/state/recipes.state';
+import * as RecipeActions from '../../store/actions/recipes.actions';
 
 @Component({
   selector: 'app-add-recipe',
@@ -14,8 +16,7 @@ import { AppState } from 'src/app/store/state/recipes.state';
 })
 export class AddRecipeComponent implements OnInit {
   recipeForm!: FormGroup;
-  // servings: number = 1;
-  ingredients: Ingredient[] = [];
+  // ingredients: Ingredient[] = [];
   categories: Category[] = [];
 
   constructor(
@@ -25,9 +26,9 @@ export class AddRecipeComponent implements OnInit {
   ) {
     this.recipeForm = this.fb.group({
       recipeName: ['', Validators.required],
-      selectedCategory: ['', Validators.required],
+      selectedCategory: [null],
       newCategoryName: [''],
-      ingredients: [[]],
+      ingredients: this.fb.array([this.createIngredientFormGroup()]),
       servings: [1, Validators.required],
       recipeDetails: ['', Validators.required],
     });
@@ -41,7 +42,18 @@ export class AddRecipeComponent implements OnInit {
       .subscribe((categories: Category[]) => {
         this.categories = categories;
       });
-    this.ingredients.push({ name: '', quantity: '' });
+    this.checkCategoryInputs();
+  }
+
+  get ingredients(): FormArray {
+    return this.recipeForm.get('ingredients') as FormArray;
+  }
+
+  createIngredientFormGroup(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      quantity: ['', Validators.required],
+    });
   }
 
   getServingsValue(): number {
@@ -59,15 +71,49 @@ export class AddRecipeComponent implements OnInit {
   }
 
   addNewIngredientsRow(): void {
-    this.ingredients.push({ name: '', quantity: '' });
+    this.ingredients.push(this.createIngredientFormGroup());
   }
 
   removeIngredientsRow(index: number): void {
-    this.ingredients = this.ingredients.filter((_, i) => i !== index);
+    this.ingredients.removeAt(index);
+  }
+
+  checkCategoryInputs() {
+    // Disable newCategoryName based if category was selected in dropdown
+    this.recipeForm.get('selectedCategory')?.valueChanges.subscribe((value) => {
+      const newCategoryControl = this.recipeForm.get('newCategoryName');
+      if (value) {
+        newCategoryControl?.disable({ emitEvent: false });
+      } else {
+        newCategoryControl?.enable({ emitEvent: false });
+      }
+    });
+    // Disable select category dropdown if there is a new category name typed in
+    this.recipeForm.get('newCategoryName')?.valueChanges.subscribe((value) => {
+      const selectedCategoryControl = this.recipeForm.get('selectedCategory');
+      if (value) {
+        selectedCategoryControl?.disable({ emitEvent: false });
+      } else {
+        selectedCategoryControl?.enable({ emitEvent: false });
+      }
+    });
+  }
+
+  clearSelectedCategory() {
+    this.recipeForm.get('selectedCategory')?.setValue(null);
   }
 
   onSubmit() {
-    console.log(this.recipeForm);
+    if (this.recipeForm.valid) {
+      const newRecipe: Recipe = new Recipe(
+        this.recipeForm.value.recipeName,
+        this.getServingsValue(),
+        this.recipeForm.value.selectedCategory,
+        this.recipeForm.value.recipeDetails,
+        this.recipeForm.value.ingredients
+      );
+      this.store.dispatch(RecipeActions.postRecipe({ recipe: newRecipe }));
+    }
   }
 
   autoResize(event: any): void {

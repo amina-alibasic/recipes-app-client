@@ -2,29 +2,25 @@ import { Category } from './category';
 import { Ingredient } from './ingredient';
 
 export class Recipe {
-  id: number;
+  id: number = 0;
   name: string;
   servings: number;
   category: Category;
   preparationInstruction: string;
-  date: Date;
+  date: Date = new Date();
   ingredients: Ingredient[];
 
   constructor(
-    id: number,
     name: string,
     servings: number,
     category: Category,
     preparationInstruction: string,
-    date: Date,
     ingredients: Ingredient[]
   ) {
-    this.id = id;
     this.name = name;
     this.servings = servings;
     this.category = category;
     this.preparationInstruction = preparationInstruction;
-    this.date = date;
     this.ingredients = ingredients;
   }
 }

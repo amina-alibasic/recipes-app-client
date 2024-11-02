@@ -39,7 +39,7 @@ export class RecipeService {
     return this.http.get(`${this.baseUrl}/recipes/${id}`);
   }
 
-  getAllCategories(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/categories/all`);
+  postRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(`${this.baseUrl}/recipes`, recipe);
   }
 }
