@@ -18,22 +18,24 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="categories-dropdown">
-      <mat-label>Select Categories</mat-label>
-      <mat-select [formControlName]="'selectedCategories'" multiple>
-        <mat-option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      class="custom-apply-button"
-      (click)="applyCategories()"
-    >
-      Apply Categories
-    </button>
+    <div class="categories-filter">
+      <mat-form-field class="categories-dropdown">
+        <mat-label>Select Categories</mat-label>
+        <mat-select [formControlName]="'selectedCategories'" multiple>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="accent"
+        class="custom-apply-button"
+        (click)="applyCategories()"
+      >
+        Apply Categories
+      </button>
+    </div>
   </form>
   <div class="sort-by-container">
     <span class="sort-by-text">SORT BY:</span>

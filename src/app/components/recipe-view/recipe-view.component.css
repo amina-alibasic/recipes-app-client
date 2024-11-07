@@ -2,6 +2,10 @@
   margin: 5vh;
   padding: 2vh;
   display: flex;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000000;
 }
 
 span {
@@ -24,7 +28,6 @@ span {
 
 .recipe-display-container {
   font-size: 18px;
-  flex: none;
   .recipe-name {
     font-weight: 600;
   }
@@ -36,7 +39,7 @@ span {
     }
     .preparation-text {
       white-space: pre-line;
-      line-height: 1.5;
+      line-height: 1.2;
     }
     ul {
       margin: 0;

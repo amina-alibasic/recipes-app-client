@@ -8,23 +8,22 @@
 }
 
 .search-form-container {
-  display: flex;
+  display: grid;
   align-items: center;
   margin: 20px;
-
-  .searchbar {
-    margin-right: 10px;
-    flex: 1;
-  }
-
-  .categories-dropdown {
-    margin-right: 10px;
-    flex: 1;
-  }
-
+  width: 80%;
   .custom-apply-button {
-    position: relative;
+    padding: 20px;
     bottom: 0.8rem;
+  }
+  .categories-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    .categories-dropdown {
+      width: 80%;
+    }
   }
 }
 
